@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stanley Igwe | Senior Analytics Engineer</title>
+  <meta name="description" content="Stanley Igwe: Senior Analytics Engineer building governed, trustworthy data platforms with dbt, Snowflake, Databricks and Python for finance, risk and AI use cases.">
+  <meta property="og:title" content="Stanley Igwe | Senior Analytics Engineer">
+  <meta property="og:description" content="Governed data platforms for finance, risk and AI. dbt · Snowflake · Databricks · SQL · Python.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://saigwe.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3a5f'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3ESI%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Stanley Igwe, home"><span class="logo">SI</span> Stanley Igwe</a>
+      <nav aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap">
+        <p class="eyebrow">Senior Analytics Engineer · Finance &amp; regulated data</p>
+        <h1>I build data that finance, risk and leadership teams can&nbsp;trust.</h1>
+        <p class="lead">Governed, decision-grade data platforms with <strong>dbt, Snowflake, Databricks, SQL and Python</strong>, built for enterprise, consulting and regulated financial services, and increasingly for AI.</p>
+        <p class="meta">Lisbon, Portugal · Open to roles in the UK, Ireland, Canada and remote</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">View projects</a>
+          <a class="btn" href="https://www.linkedin.com/in/stanleyaigwe" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/Saigwe" target="_blank" rel="noopener">GitHub</a>
+        </div>
+
+        <ul class="stats" aria-label="Career highlights">
+          <li><span class="num">9+</span><span class="lbl">years in data</span></li>
+          <li><span class="num">5</span><span class="lbl">global business units unified on one governed dbt + Snowflake model</span></li>
+          <li><span class="num">~60%</span><span class="lbl">less manual reporting effort</span></li>
+          <li><span class="num">~8</span><span class="lbl">engineers &amp; analysts led and mentored</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="wrap">
+        <h2>Projects</h2>
+        <p class="section-lead">Public, reproducible work. Each repo has a design doc, tests and CI.</p>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data engineering + AI</p>
+              <h3><a href="https://github.com/Saigwe/semiconductor-yield-analytics" target="_blank" rel="noopener">Semiconductor Yield &amp; Test Analytics</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/semiconductor-yield-analytics/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/semiconductor-yield-analytics/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A governed lakehouse for semiconductor manufacturing test data (UCI SECOM, 1,567 wafer runs × 590 sensors). It goes from raw sensor readings to <strong>one trusted yield metric</strong>, a ranked list of <strong>suspect sensors</strong>, multivariate <strong>anomaly scores</strong>, and plain-English questions answered by <strong>guardrailed, benchmarked natural-language-to-SQL</strong>.</p>
+          <ul class="points">
+            <li>Bronze → silver → gold with an explicit grain at every layer: Kimball dimensions, wafer and sensor facts, yield defined exactly once</li>
+            <li>Business-rule tests catch outputs that are "technically valid but semantically wrong": yield ∈ [0,1], fails ≤ wafers, every wafer has readings</li>
+            <li>The same dbt models run on DuckDB (local and CI) and Databricks + Delta Lake (cloud)</li>
+            <li>The NL-to-SQL guardrail allows only single SELECTs against approved gold models; execution accuracy is scored against gold SQL</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>Databricks</li><li>Delta Lake</li><li>DuckDB</li><li>Python</li><li>scikit-learn</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/semiconductor-yield-analytics" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/semiconductor-yield-analytics/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
+            <a href="https://github.com/Saigwe/semiconductor-yield-analytics/blob/main/docs/layer_plan.md" target="_blank" rel="noopener">Layer plan →</a>
+          </div>
+        </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <div class="building">
+          <h3>Currently building</h3>
+          <p class="muted">In progress, not yet public. Links will appear here when each repo goes live.</p>
+          <ul>
+            <li><strong>Card Transactions &amp; Fraud Analytics Mart:</strong> dbt with snapshots, data contracts, unit tests, a semantic layer and Slim CI</li>
+            <li><strong>UK Markets &amp; Macro Lakehouse:</strong> Bank of England and ONS data on Apache Iceberg, with Spark, Trino and write-audit-publish</li>
+            <li><strong>"Ask the Warehouse":</strong> an AI agent over a dbt semantic layer via MCP, with an evaluation suite</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section alt">
+      <div class="wrap">
+        <h2>Experience</h2>
+        <ol class="timeline">
+          <li>
+            <div class="when">2026 – now</div>
+            <div class="what">
+              <h3>Independent Analytics Engineering Consultant</h3>
+              <p class="org">Clients: DoorDash, VoCoVo · Remote</p>
+              <p>Source assessment and governed model design across PostgreSQL, MongoDB and semi-structured JSON (56 tables profiled), with explicit data-confidence measures. Cut a daily reporting workflow from ~1 day to ~2 hours.</p>
+            </div>
+          </li>
+          <li>
+            <div class="when">2024 – 2026</div>
+            <div class="what">
+              <h3>Lead Analytics &amp; BI Engineer</h3>
+              <p class="org">Bose Corporation · Lisbon</p>
+              <p>Owned the analytics engineering layer of an enterprise dbt + Snowflake modernisation across five global business units. Built Kimball models, automated quality tests and access controls, and optimised warehouse cost. Cut manual reporting effort ~60%, led ~8 people and raised self-service adoption ~40%.</p>
+            </div>
+          </li>
+          <li>
+            <div class="when">2022 – 2024</div>
+            <div class="what">
+              <h3>Senior Analytics &amp; BI Engineer</h3>
+              <p class="org">McKinsey &amp; Company · Lisbon</p>
+              <p>Built reusable dbt and SQL patterns on Snowflake, BigQuery and Azure, deployed to hundreds of clients a year. Delivered procurement and spend analytics and presented to C-suite audiences.</p>
+            </div>
+          </li>
+          <li>
+            <div class="when">2020 – 2022</div>
+            <div class="what">
+              <h3>Senior Data &amp; Analytics Consultant</h3>
+              <p class="org">PwC · Lagos</p>
+              <p>Built near-real-time transaction and risk-indicator datasets for banking clients, with audit-ready validation and governance controls. Built churn, segmentation and next-best-offer models for a telecoms operator.</p>
+            </div>
+          </li>
+          <li>
+            <div class="when">2016 – 2019</div>
+            <div class="what">
+              <h3>Data &amp; BI roles</h3>
+              <p class="org">Venture Garden Group · Ikeja Electric · Lagos</p>
+              <p>Revenue-assurance analytics on smart-meter and vending data that recovered NGN 5M in three months. Built company-wide Power BI reporting and reusable ETL templates.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <div class="skill-grid">
+          <div><h3>Analytics engineering</h3><ul class="chips"><li>dbt Core</li><li>Kimball / SCD2</li><li>Semantic layers</li><li>dbt tests &amp; contracts</li><li>Metric definitions</li></ul></div>
+          <div><h3>Platforms</h3><ul class="chips"><li>Snowflake</li><li>BigQuery</li><li>Databricks</li><li>PostgreSQL</li><li>MongoDB</li><li>Azure · AWS · GCP</li></ul></div>
+          <div><h3>Pipelines &amp; DataOps</h3><ul class="chips"><li>Airflow</li><li>Azure Data Factory</li><li>Fivetran</li><li>Git &amp; CI/CD</li><li>Cost optimisation</li></ul></div>
+          <div><h3>Languages &amp; BI</h3><ul class="chips"><li>SQL</li><li>Python</li><li>R</li><li>Power BI</li><li>Tableau</li><li>Looker</li><li>Metabase</li></ul></div>
+          <div><h3>Domains</h3><ul class="chips"><li>Banking &amp; risk data</li><li>Auditable reporting</li><li>Procurement &amp; spend</li><li>Revenue assurance</li><li>Churn &amp; retention</li></ul></div>
+          <div><h3>AI-ready data</h3><ul class="chips"><li>NL-to-SQL with evaluations</li><li>Guardrails</li><li>Anomaly detection</li><li>Forecasting</li></ul></div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <h3>Certifications</h3>
+            <ul class="plain">
+              <li>Project Management Professional (PMP)</li>
+              <li>Microsoft Certified: Data Analyst Associate</li>
+              <li>Microsoft Certified: Azure Fundamentals</li>
+              <li>Microsoft Certified Trainer (MCT)</li>
+              <li>Alteryx Designer Core</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Education</h3>
+            <ul class="plain">
+              <li>MSc Electrical &amp; Electronic Engineering, University of Lagos</li>
+              <li>BEng Electrical &amp; Electronic Engineering, First Class Honours, Madonna University</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section alt">
+      <div class="wrap contact">
+        <h2>Let's talk</h2>
+        <p class="section-lead">Building data platforms in financial services, fintech or AI? I'd be glad to hear what you're working on.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://www.linkedin.com/in/stanleyaigwe" target="_blank" rel="noopener">Message me on LinkedIn</a>
+          <a class="btn" href="mailto:stanley.a.igwe@gmail.com">Email</a>
+          <a class="btn" href="https://github.com/Saigwe" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© <span id="year">2026</span> Stanley Igwe · Plain HTML and CSS, hosted on GitHub Pages</div>
+  </footer>
+
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
