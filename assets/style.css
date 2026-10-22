@@ -123,6 +123,11 @@ h3 { font-size: 1.1rem; }
 .what h3 { margin: 0 0 2px; }
 .org { color: var(--accent-2); font-weight: 600; margin: 0 0 6px; font-size: .95rem; }
 .what p:last-child { margin: 0; }
+.subroles { display: grid; gap: 14px; margin-top: 10px; }
+.subrole { border-left: 3px solid var(--border); padding-left: 14px; }
+.subrole h4 { margin: 0 0 4px; font-size: 1rem; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.sub-when { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .8rem; font-weight: 500; color: var(--muted); }
+.subrole p { margin: 0; }
 
 /* Skills */
 .skill-grid { display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 20px; }

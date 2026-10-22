@@ -1,6 +1,6 @@
 # saigwe.github.io
 
-Personal portfolio for **Stanley Igwe**, Senior Analytics Engineer. Live at **https://saigwe.github.io**.
+Personal portfolio for **Stanley Igwe**, Lead Data (Analytics) Engineer. Live at **https://saigwe.github.io**.
 
 Plain HTML, CSS and a little JavaScript. No build step, hosted on GitHub Pages.
 
