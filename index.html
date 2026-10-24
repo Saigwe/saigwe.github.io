@@ -115,7 +115,8 @@
                     <li>Migrated 10+ Tableau AR and collections reports to live Snowflake apps, putting $700M+ of open receivables across ~25k customers in one drillable view (15+ apps built in total).</li>
                     <li>Built a risk-rating control app for ~20k merchant accounts, with override sign-off, period locks and a full audit trail, replacing a spreadsheet upload.</li>
                     <li>Caught reporting errors before they reached the books: a model bug that overstated newly high-risk accounts ~3×, and ~$44M of business-line misclassification.</li>
-                    <li>Tied merchant-level commission revenue to the general ledger with $0 variance for the external auditors, and built dbt AR models for an acquired brand.</li>
+                    <li>Designed an end-to-end incremental dbt pipeline for ASC 606 commission analysis, with a reusable FX-rate dimension, merchant range checks and 25 data tests. It reconciles to the general ledger with $0 variance for the external auditors and replaced a legacy script.</li>
+                    <li>Built dbt AR models for an acquired brand, and enhanced the auto-dunning dataset with new tranche logic and standardised, deduplicated contact numbers for collectors.</li>
                     <li>Built Snowflake cost intelligence (~400k credits across 165 warehouses) and health monitoring for ~470 Fivetran connectors with month-end close alerts.</li>
                     <li>Created reusable building blocks: a branded app template, a shared feedback system and plain-English AI assistants for data questions.</li>
                   </ul>
