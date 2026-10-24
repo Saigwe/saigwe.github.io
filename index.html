@@ -107,13 +107,30 @@
             <div class="what">
               <h3>Independent Data (Analytics) Engineer Consultant</h3>
               <p class="org">Clients: DoorDash, VoCoVo · Remote</p>
-              <p>Source assessment and governed model design across PostgreSQL, MongoDB and semi-structured JSON, with explicit data-confidence measures.</p>
-              <ul class="projects">
-                <li>Profiled 56 tables, prioritised 36 for a governed reporting foundation, and built the data dictionary and source map.</li>
-                <li>Estate-wide dashboards and SQL extracts over ~680k devices, surfacing ~6.4k controllers missing from the earlier reporting scope.</li>
-                <li>Normalised hardware failure rates per 1,000 active units to support end-of-life planning.</li>
-                <li>Cut selected recurring reporting from ~1 day to ~1 hour across 12 customer contexts.</li>
-              </ul>
+              <div class="subroles">
+                <div class="subrole">
+                  <h4>DoorDash · Accounting Analytics</h4>
+                  <p>Modernised how the accounting team, especially accounts-receivable collections, gets its numbers, using Snowflake, dbt and Streamlit in Snowflake.</p>
+                  <ul class="projects">
+                    <li>Migrated 10+ Tableau AR and collections reports to live Snowflake apps, putting $700M+ of open receivables across ~25k customers in one drillable view (15+ apps built in total).</li>
+                    <li>Built a risk-rating control app for ~20k merchant accounts, with override sign-off, period locks and a full audit trail, replacing a spreadsheet upload.</li>
+                    <li>Caught reporting errors before they reached the books: a model bug that overstated newly high-risk accounts ~3×, and ~$44M of business-line misclassification.</li>
+                    <li>Tied merchant-level commission revenue to the general ledger with $0 variance for the external auditors, and built dbt AR models for an acquired brand.</li>
+                    <li>Built Snowflake cost intelligence (~400k credits across 165 warehouses) and health monitoring for ~470 Fivetran connectors with month-end close alerts.</li>
+                    <li>Created reusable building blocks: a branded app template, a shared feedback system and plain-English AI assistants for data questions.</li>
+                  </ul>
+                </div>
+                <div class="subrole">
+                  <h4>VoCoVo · Data and reporting lead</h4>
+                  <p>Source assessment and governed model design across PostgreSQL, MongoDB and semi-structured JSON, with explicit data-confidence measures.</p>
+                  <ul class="projects">
+                    <li>Profiled 56 tables, prioritised 36 for a governed reporting foundation, and built the data dictionary and source map.</li>
+                    <li>Estate-wide dashboards and SQL extracts over ~680k devices, surfacing ~6.4k controllers missing from the earlier reporting scope.</li>
+                    <li>Normalised hardware failure rates per 1,000 active units to support end-of-life planning.</li>
+                    <li>Cut selected recurring reporting from ~1 day to ~1 hour.</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </li>
           <li>
