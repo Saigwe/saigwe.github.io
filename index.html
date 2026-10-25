@@ -136,11 +136,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -151,19 +146,27 @@
               <img src="https://github.com/Saigwe/receivables-analytics-app/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> One live view of receivables: AR aging, DSO and collections on dbt, served in a Streamlit app, with cost and pipeline-health monitoring built in.</p>
+          <p>A public rebuild, on synthetic data, of the accounts-receivable analytics I moved from Tableau to Streamlit on dbt at a food-delivery marketplace. A dbt model of <strong>660k invoices across 25,000 customers</strong> gives aging, DSO, CEI, unapplied cash and a ranked collections worklist. Every screen of the app proves the sub-ledger <strong>ties to the general ledger</strong> (54 of 54 month-end and currency checks, to the cent).</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (20/20 dbt checks passing). Open-item balances and AR aging by segment at any as-of date, with a test that cash applied never exceeds the invoice.</li>
-            <li><strong>Next:</strong> Model <code>fct_invoice</code>, <code>fct_payment_application</code> and <code>dim_customer</code> (SCD2 with dbt snapshots) with an explicit grain.</li>
+            <li>Month-end open items for every invoice. Aging is reported by the segment each customer had at that month-end, through a point-in-time join to a type-2 customer dimension.</li>
+            <li>The cash-application fact is incremental on load time. A script proves the incremental run equals a full rebuild across 650k rows, including payments that load days late.</li>
+            <li>59 dbt checks run in about 4 seconds, covering the GL tie-out, cash never over-applied, aging totals and KPI ranges, plus unit tests on the type-2 windows and the month-end balance logic.</li>
+            <li>A Streamlit app with KPI trends, aging, a collections worklist with customer drill-down, and a pipeline-health tab built from recorded dbt runs.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dbt Core</li><li>Snowflake</li><li>DuckDB</li><li>Streamlit</li><li>Python</li>
+            <li>dbt Core</li><li>DuckDB</li><li>Streamlit</li><li>Python</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/receivables-analytics-app" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/receivables-analytics-app#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/receivables-analytics-app#numbers" target="_blank" rel="noopener">Results →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
