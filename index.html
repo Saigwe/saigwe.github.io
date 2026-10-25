@@ -188,34 +188,37 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
-              <p class="tag">Featured · Data engineering + IoT</p>
-              <h3><a href="https://github.com/Saigwe/device-fleet-reliability" target="_blank" rel="noopener">Device Fleet Reliability Lakehouse</a></h3>
+              <p class="tag">Featured · Data engineering + IoT reliability</p>
+              <h3><a href="https://github.com/Saigwe/device-fleet-reliability" target="_blank" rel="noopener">Device Fleet Reliability</a></h3>
             </div>
             <a class="badge" href="https://github.com/Saigwe/device-fleet-reliability/actions/workflows/ci.yml" target="_blank" rel="noopener">
               <img src="https://github.com/Saigwe/device-fleet-reliability/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> Estate-wide reliability for a device fleet: multi-source ingestion, failure rates normalised per 1,000 units, survival curves and end-of-life planning, with a governed data catalogue.</p>
+          <p>The fleet-reliability approach I led for ~680k devices, applied to real data: <strong>30.6 million drive-days</strong> from Backblaze's 351,000-drive fleet (Q1 2026). It produces annualised failure rates with confidence intervals, failures per 1,000 units, the age "bathtub" curve, left-truncated survival curves, and a <strong>next-quarter replacement forecast</strong> (914 expected failures, against 1,027 observed this quarter).</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (18/18 dbt checks passing). A device-day fact and annualised failure rate and failures per 1,000 units by model.</li>
-            <li><strong>Next:</strong> Write a Backblaze loader that puts one quarter into Postgres and MongoDB, and the rest into JSON files.</li>
+            <li>The 30.6M rows load in 23 seconds with DuckDB. dbt builds a drive-day fact and AFR by model, age and manufacturer: <strong>1.24% fleet AFR</strong>, with 35 models meeting Backblaze's reporting threshold.</li>
+            <li>Conformed keys: 476 drives report a WDC model without its prefix, which would split one model in two. Silver fixes it, keeps the raw value, and a test guards it.</li>
+            <li>Governance built in: owners and classifications as dbt meta, enforced contracts on the AFR reports, a source profile, lineage, and source-quality warnings.</li>
+            <li>SMART 197 and 198 appear on failed drives about <strong>28×</strong> more often than on healthy ones. Kaplan–Meier is corrected for drives already in service (left truncation), and the README is open about where single-quarter curves are noisy.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dlt</li><li>dbt Core</li><li>DuckDB</li><li>BigQuery</li><li>Python</li><li>OpenMetadata</li>
+            <li>DuckDB</li><li>dbt Core</li><li>Python</li><li>lifelines</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/device-fleet-reliability" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/device-fleet-reliability#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/device-fleet-reliability#numbers" target="_blank" rel="noopener">Results →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
