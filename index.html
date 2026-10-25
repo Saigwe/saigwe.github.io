@@ -138,14 +138,331 @@
 
         <div id="more-projects" class="grid" hidden></div>
 
-        <div class="building">
-          <h3>Currently building</h3>
-          <p class="muted">Public and in progress: each repo runs end to end in CI on a test dataset, and its README roadmap shows what's next.</p>
-          <ul>
-            <li><strong><a href="https://github.com/Saigwe/uk-markets-lakehouse" target="_blank" rel="noopener">UK Markets &amp; Macro Lakehouse</a>:</strong> Bank of England and ONS data on Apache Iceberg, with Spark, Trino and write-audit-publish</li>
-            <li><strong><a href="https://github.com/Saigwe/ask-the-warehouse" target="_blank" rel="noopener">"Ask the Warehouse"</a>:</strong> an AI agent over a dbt semantic layer via MCP, with an evaluation suite</li>
+        <h3 class="subhead" id="in-progress" style="margin-top:40px">In progress</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. These are public and run end to end in CI on a test dataset; each README roadmap shows what is still to come.</p>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Analytics engineering + finance</p>
+              <h3><a href="https://github.com/Saigwe/receivables-analytics-app" target="_blank" rel="noopener">Receivables &amp; Cash Analytics App</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/receivables-analytics-app/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/receivables-analytics-app/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> One live view of receivables: AR aging, DSO and collections on dbt, served in a Streamlit app, with cost and pipeline-health monitoring built in.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (20/20 dbt checks passing). Open-item balances and AR aging by segment at any as-of date, with a test that cash applied never exceeds the invoice.</li>
+            <li><strong>Next:</strong> Model <code>fct_invoice</code>, <code>fct_payment_application</code> and <code>dim_customer</code> (SCD2 with dbt snapshots) with an explicit grain.</li>
           </ul>
-        </div>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>Snowflake</li><li>DuckDB</li><li>Streamlit</li><li>Python</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/receivables-analytics-app" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/receivables-analytics-app#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Analytics engineering + controls</p>
+              <h3><a href="https://github.com/Saigwe/merchant-risk-controls" target="_blank" rel="noopener">Merchant Risk-Rating Controls</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/merchant-risk-controls/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/merchant-risk-controls/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> A rules-based merchant risk rating with a maker-checker override workflow, period locks and a full audit trail, plus the regression test that would have caught a 3x overstatement bug.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (20/20 dbt checks passing). Model ratings with approved overrides applied, a maker-checker test, and a guard that fails if newly high-risk merchants jump more than 3x month on month.</li>
+            <li><strong>Next:</strong> Rules-based risk score model with documented thresholds.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>Postgres</li><li>Streamlit</li><li>Python</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/merchant-risk-controls" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/merchant-risk-controls#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Data engineering + IoT</p>
+              <h3><a href="https://github.com/Saigwe/device-fleet-reliability" target="_blank" rel="noopener">Device Fleet Reliability Lakehouse</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/device-fleet-reliability/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/device-fleet-reliability/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Estate-wide reliability for a device fleet: multi-source ingestion, failure rates normalised per 1,000 units, survival curves and end-of-life planning, with a governed data catalogue.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (18/18 dbt checks passing). A device-day fact and annualised failure rate and failures per 1,000 units by model.</li>
+            <li><strong>Next:</strong> Write a Backblaze loader that puts one quarter into Postgres and MongoDB, and the rest into JSON files.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dlt</li><li>dbt Core</li><li>DuckDB</li><li>BigQuery</li><li>Python</li><li>OpenMetadata</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/device-fleet-reliability" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/device-fleet-reliability#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Data engineering + streaming</p>
+              <h3><a href="https://github.com/Saigwe/device-telemetry-streaming" target="_blank" rel="noopener">Real-Time Device Telemetry Stream</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/device-telemetry-streaming/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/device-telemetry-streaming/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Device heartbeats streamed through Kafka with windowed failure alerts, watermarks for late data and deduplication for effectively-once results, plus a batch reference implementation that proves the streaming numbers.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (11/11 dbt checks passing). Deduplicated heartbeats in 5-minute windows per site with late events counted: the batch reference the stream will be checked against.</li>
+            <li><strong>Next:</strong> Producer: replay heartbeats to a Redpanda topic, with a schema in the schema registry.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Kafka</li><li>Flink</li><li>Spark</li><li>Iceberg</li><li>ClickHouse</li><li>dbt Core</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/device-telemetry-streaming" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/device-telemetry-streaming#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Analytics engineering + product</p>
+              <h3><a href="https://github.com/Saigwe/product-analytics-experiments" target="_blank" rel="noopener">Product Usage, Retention &amp; Experiments</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/product-analytics-experiments/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/product-analytics-experiments/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Product analytics on raw app events: sessionisation, funnels, retention cohorts and DAU/MAU, plus an A/B testing kit with sample-ratio checks and CUPED, all defined once in dbt.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (18/18 dbt checks passing). Weekly retention cohorts, conversion by experiment variant, and a sample-ratio-mismatch test.</li>
+            <li><strong>Next:</strong> Point the sources at the GA4 sample in BigQuery; keep the fixture for CI.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>BigQuery</li><li>dbt Core</li><li>DuckDB</li><li>Lightdash</li><li>Python</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/product-analytics-experiments" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/product-analytics-experiments#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Analytics engineering + procurement</p>
+              <h3><a href="https://github.com/Saigwe/procurement-spend-cube" target="_blank" rel="noopener">Procurement Spend Cube &amp; Supplier Analytics</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/procurement-spend-cube/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/procurement-spend-cube/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> A spend cube on real public procurement data: supplier normalisation, an evaluated spend classifier, tail-spend and consolidation opportunities, and working-capital (DPO) metrics, packaged to run for many clients.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (20/20 dbt checks passing). Keyword spend classification, a spend cube by category and quarter, and supplier Pareto with tail-spend flags.</li>
+            <li><strong>Next:</strong> Load one fiscal year of USAspending awards for one agency.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>Python</li><li>LLM classification</li><li>Power BI</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/procurement-spend-cube" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/procurement-spend-cube#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Analytics engineering + AI</p>
+              <h3><a href="https://github.com/Saigwe/ask-the-warehouse" target="_blank" rel="noopener">&quot;Ask the Warehouse&quot;: Semantic Layer + AI Agent</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/ask-the-warehouse/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/ask-the-warehouse/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Metrics defined once in a semantic layer, an automated check that dashboards match it, and an AI agent that answers questions through the metrics (via MCP), scored on a benchmark with known answers.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (15/15 dbt checks passing). Net revenue defined once, a dashboard-matches-model test, and a 4-question benchmark with a SQL guardrail.</li>
+            <li><strong>Next:</strong> Define the metrics once (MetricFlow semantic models or Cube).</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>MetricFlow</li><li>MCP</li><li>LLM evaluation</li><li>DuckDB</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/ask-the-warehouse" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/ask-the-warehouse#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Data engineering + healthcare</p>
+              <h3><a href="https://github.com/Saigwe/health-claims-warehouse" target="_blank" rel="noopener">Health Claims &amp; Pre-Authorisation Warehouse</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/health-claims-warehouse/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/health-claims-warehouse/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> A Kimball warehouse for health-insurance claims and pre-authorisations: turnaround, approval rates and cost per member, with PII masking and daily Airflow orchestration.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (30/30 dbt checks passing). A pre-authorisation accumulating snapshot, monthly approval rate and turnaround, cost per member per month, and date of birth reduced to birth year.</li>
+            <li><strong>Next:</strong> Load Synthea or DE-SynPUF into Postgres bronze.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>Airflow</li><li>Postgres</li><li>DuckDB</li><li>Metabase</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/health-claims-warehouse" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/health-claims-warehouse#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Data engineering + ML platform</p>
+              <h3><a href="https://github.com/Saigwe/telecom-churn-feature-store" target="_blank" rel="noopener">Telecom Churn Feature Store</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/telecom-churn-feature-store/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/telecom-churn-feature-store/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Point-in-time correct churn features in dbt, served through a Feast feature store to a tracked model, with drift monitoring: the same features for training and serving, and no leakage.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (10/10 dbt checks passing). Point-in-time churn features per customer-month with a leakage test.</li>
+            <li><strong>Next:</strong> Load the IBM Telco data and generate monthly usage.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>Feast</li><li>MLflow</li><li>scikit-learn</li><li>DuckDB</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/telecom-churn-feature-store" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/telecom-churn-feature-store#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Data engineering + platform</p>
+              <h3><a href="https://github.com/Saigwe/uk-markets-lakehouse" target="_blank" rel="noopener">UK Markets &amp; Macro Lakehouse</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/uk-markets-lakehouse/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/uk-markets-lakehouse/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Official UK statistics and market data on Apache Iceberg: scheduled API pulls, schema evolution and time travel, write-audit-publish so bad data never reaches readers, and every resource in Terraform.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (12/12 dbt checks passing). Latest value per observation across vintages and a revisions report.</li>
+            <li><strong>Next:</strong> Scheduled pulls from ONS and Bank of England APIs into bronze, keeping every vintage.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Iceberg</li><li>Spark</li><li>Trino</li><li>Terraform</li><li>dbt Core</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/uk-markets-lakehouse" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/uk-markets-lakehouse#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Data engineering + energy</p>
+              <h3><a href="https://github.com/Saigwe/smart-meter-revenue-protection" target="_blank" rel="noopener">Smart-Meter Revenue Protection</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/smart-meter-revenue-protection/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/smart-meter-revenue-protection/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Half-hourly smart-meter data processed at scale to find likely energy theft: the gap between energy consumed and energy bought, per meter and feeder, ranked for inspection with revenue at risk.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (22/22 dbt checks passing). Consumed vs purchased energy per meter per week, ranked within feeder, and unbilled share per feeder.</li>
+            <li><strong>Next:</strong> Ingest the London half-hourly readings into Delta, partitioned by date and clustered by meter.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>PySpark</li><li>Databricks</li><li>Delta Lake</li><li>dbt Core</li><li>DuckDB</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/smart-meter-revenue-protection" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/smart-meter-revenue-protection#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Analytics engineering + geospatial</p>
+              <h3><a href="https://github.com/Saigwe/grid-reliability-gis" target="_blank" rel="noopener">Grid Assets GIS &amp; Reliability (SAIDI/SAIFI)</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/grid-reliability-gis/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/grid-reliability-gis/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Feeder assets on a map, customers matched to the network, and the standard reliability indices (SAIDI and SAIFI) by feeder and month, with a hex map of the worst-served areas.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (15/15 dbt checks passing). SAIDI and SAIFI by month and by feeder, with a check that outages never exceed customers served.</li>
+            <li><strong>Next:</strong> Load OSM substations and lines for one city into PostGIS.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>PostGIS</li><li>GeoPandas</li><li>H3</li><li>dbt Core</li><li>DuckDB</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/grid-reliability-gis" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/grid-reliability-gis#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Data engineering + energy</p>
+              <h3><a href="https://github.com/Saigwe/load-forecasting-ops" target="_blank" rel="noopener">Hourly Load Forecasting &amp; Ops Reports</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/load-forecasting-ops/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/load-forecasting-ops/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Half-hourly national demand loaded incrementally with a 5-year backfill, a day-ahead forecast benchmarked against a naive baseline, forecast accuracy tracked over time, and a morning ops report with no manual steps.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (13/13 dbt checks passing). Daily peak and average demand, a completeness test, and a same-day-last-week baseline with MAPE by month.</li>
+            <li><strong>Next:</strong> Incremental daily loads from NESO; backfill five years.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Airflow</li><li>Dagster</li><li>dbt Core</li><li>LightGBM</li><li>DuckDB</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/load-forecasting-ops" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/load-forecasting-ops#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">In progress · Analytics engineering + HR</p>
+              <h3><a href="https://github.com/Saigwe/people-training-analytics" target="_blank" rel="noopener">People &amp; Training Analytics</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/people-training-analytics/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/people-training-analytics/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>Goal:</strong> Learning and development analytics: training cost per employee, a competency-gap matrix and attrition cohorts by training history.</p>
+          <ul class="points">
+            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (16/16 dbt checks passing). Training cost per employee by year and department, with a trained-before-hired check.</li>
+            <li><strong>Next:</strong> Load the IBM attrition data and generate training history.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>Evidence.dev</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/people-training-analytics" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/people-training-analytics#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+          </div>
+        </article>
       </div>
     </section>
 
