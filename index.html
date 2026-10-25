@@ -162,11 +162,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -177,19 +172,27 @@
               <img src="https://github.com/Saigwe/merchant-risk-controls/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> A rules-based merchant risk rating with a maker-checker override workflow, period locks and a full audit trail, plus the regression test that would have caught a 3x overstatement bug.</p>
+          <p>A public rebuild, on synthetic data, of the risk-rating control app I built to replace a spreadsheet upload for ~20k merchant accounts. Ratings for <strong>20,000 merchants</strong> come from scoring rules held as data, and overrides go through a <strong>maker-checker approval app</strong> with required reasons and period locks. Every action lands in an append-only audit log that dbt <strong>re-audits independently</strong>: 0 control violations across 2,994 events.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (20/20 dbt checks passing). Model ratings with approved overrides applied, a maker-checker test, and a guard that fails if newly high-risk merchants jump more than 3x month on month.</li>
-            <li><strong>Next:</strong> Rules-based risk score model with documented thresholds.</li>
+            <li>Eight scoring rules live in a dbt seed. Signals are unpivoted and joined to the rules, so thresholds and weights change without SQL, and every rating lists the rules behind it.</li>
+            <li>Controls are enforced twice: in the app (20 pytest tests: self-approval, roles, reasons, locks, duplicates) and again in SQL over the whole log. An answer-key test plants five kinds of breach and requires each to be caught.</li>
+            <li>A reconciliation guard on "newly high-risk" counts: a silently failed prior-month join would overstate them 1.9–2.4× on this data, and the build now fails if that happens.</li>
+            <li>Type-2 rating history (gaps and islands) and a dbt snapshot. I verified the full flow in the running app: propose, refused self-approval, checker approval, rating changed.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dbt Core</li><li>Postgres</li><li>Streamlit</li><li>Python</li>
+            <li>dbt Core</li><li>DuckDB</li><li>Streamlit</li><li>pytest</li><li>Python</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/merchant-risk-controls" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/merchant-risk-controls#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/merchant-risk-controls#numbers" target="_blank" rel="noopener">Results →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
