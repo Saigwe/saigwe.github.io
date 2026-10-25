@@ -84,6 +84,32 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Analytics engineering + finance</p>
+              <h3><a href="https://github.com/Saigwe/revenue-gl-reconciliation" target="_blank" rel="noopener">Revenue-to-GL Reconciliation</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/revenue-gl-reconciliation/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/revenue-gl-reconciliation/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A public rebuild, on synthetic data, of the accounting analytics I did for a food-delivery marketplace. An incremental dbt pipeline ties a multi-currency commission sub-ledger (91k events) to the general ledger with <strong>$0 unexplained variance</strong> on all 26 account-months, explains every difference as a <strong>reconciling item</strong>, and proposes <strong>reclassification journals</strong> for revenue booked to the wrong account.</p>
+          <ul class="points">
+            <li>An answer-key test plants a duplicate journal, a wrong-FX posting, a late month-end posting and an account-mapping bug. The build fails unless every one is found with the right reason and amount, and nothing else is flagged.</li>
+            <li>The revenue fact is incremental on load time, not event time. A script proves the incremental result equals a full refresh, including events that arrive late.</li>
+            <li>FX is translated at batch level, as the GL does it, with a 5-day fallback for weekends and holidays; dbt unit tests cover the fallback and the variance rules.</li>
+            <li>Dagster assets with a daily schedule and a month-end re-tie job; the same SQL targets DuckDB (local and CI) and Snowflake.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>Snowflake</li><li>Dagster</li><li>Python</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/revenue-gl-reconciliation" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/revenue-gl-reconciliation/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
 
         <div class="building">
