@@ -241,11 +241,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -256,19 +251,28 @@
               <img src="https://github.com/Saigwe/product-analytics-experiments/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> Product analytics on raw app events: sessionisation, funnels, retention cohorts and DAU/MAU, plus an A/B testing kit with sample-ratio checks and CUPED, all defined once in dbt.</p>
+          <p>Product analytics on <strong>2.76 million real e-commerce events</strong> (RetailRocket), with sessions, funnel, day-N retention and stickiness each defined once in dbt. Alongside it, an A/B testing toolkit validated on <strong>269,683 real visitors</strong>: A/A tests, planted effects and a deliberately broken split. A product write-up argues which metric to move and why.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (18/18 dbt checks passing). Weekly retention cohorts, conversion by experiment variant, and a sample-ratio-mismatch test.</li>
-            <li><strong>Next:</strong> Point the sources at the GA4 sample in BigQuery; keep the fixture for CI.</li>
+            <li>Funnel: 2.5% of viewing sessions add to cart, 32.6% of those buy, and 87% of visitors never return. Add-to-cart is the step to move, and its tests need about 3× fewer users than purchase-conversion tests.</li>
+            <li>The toolkit (sample size, sample-ratio check, CUPED, guardrails) recovers planted lifts within 0.3 points with 93–97% interval coverage. CUPED raises power at a +5% lift from 85% to 96% where the pre-period predicts the outcome.</li>
+            <li>Honest findings: CUPED does nothing for conversion (pre-period correlation 0.06), and a 2% guardrail can't be verified at this traffic. A 2% loss of treatment units is caught (p = 2e-10).</li>
+            <li>27 dbt checks run in 8.5 seconds, including unit tests on the 30-minute session rule and bot exclusion, and a test that every human event lands in exactly one session.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>BigQuery</li><li>dbt Core</li><li>DuckDB</li><li>Lightdash</li><li>Python</li>
+            <li>dbt Core</li><li>DuckDB</li><li>Python</li><li>SciPy</li><li>pytest</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/product-analytics-experiments" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/product-analytics-experiments#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/product-analytics-experiments#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/product-analytics-experiments/blob/main/docs/product_writeup.md" target="_blank" rel="noopener">Product write-up →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
