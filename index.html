@@ -214,11 +214,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -229,19 +224,28 @@
               <img src="https://github.com/Saigwe/device-telemetry-streaming/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> Device heartbeats streamed through Kafka with windowed failure alerts, watermarks for late data and deduplication for effectively-once results, plus a batch reference implementation that proves the streaming numbers.</p>
+          <p>The streaming version of that device reporting: alerts as devices fail, not in the next day's report. <strong>30.7 million real heartbeats</strong> (the Backblaze fleet, replayed with deliberate jitter, late arrivals and duplicate deliveries) go through event-time windows with a watermark, deduplication and a late-data side output, at <strong>148k events a second</strong>. Every one of 540 windows reconciles to a dbt batch reference, and the batch matches the source's 1,030 failures exactly.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (11/11 dbt checks passing). Deduplicated heartbeats in 5-minute windows per site with late events counted: the batch reference the stream will be checked against.</li>
-            <li><strong>Next:</strong> Producer: replay heartbeats to a Redpanda topic, with a schema in the schema registry.</li>
+            <li>Runs end to end through real Kafka (Redpanda) in CI: JSON schema in the registry, a 3-partition topic, offsets committed only after the sink write, then the same dbt reconciliation. Median latency from producer to published window is 0.41 s.</li>
+            <li>The Kafka run found a real bug the ordered replay couldn't: 59% of events went late because the watermark followed the fastest partition. Per-partition watermarks (as in Flink) cut that to 0.3%.</li>
+            <li>Effectively-once results: at-least-once input, deduplication and an idempotent upsert keyed by site and window. An Iceberg table keeps the history of every published window, and 10 pytest tests cover the engine.</li>
+            <li>A mutation test proves the reconciliation catches lost events. A design doc covers batch vs streaming, lateness vs latency, and what changes at 10×.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>Kafka</li><li>Flink</li><li>Spark</li><li>Iceberg</li><li>ClickHouse</li><li>dbt Core</li>
+            <li>Kafka</li><li>Redpanda</li><li>Iceberg</li><li>DuckDB</li><li>dbt Core</li><li>Python</li><li>Streamlit</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/device-telemetry-streaming" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/device-telemetry-streaming#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/device-telemetry-streaming#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/device-telemetry-streaming/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
