@@ -110,13 +110,38 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Analytics engineering + fintech</p>
+              <h3><a href="https://github.com/Saigwe/fraud-analytics-mart" target="_blank" rel="noopener">Payments Fraud &amp; Continuous-Audit Mart</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/fraud-analytics-mart/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/fraud-analytics-mart/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Six continuous-audit controls built as dbt models and measured on <strong>6.36M mobile-money transactions</strong> (PaySim, 8,213 fraud). Two controls kept for production catch <strong>99.4% of fraud at 89.8% precision</strong>. The simple over-200k transfer rule would raise 409k alerts at 0.7% precision. On a later, unseen time window, a gradient-boosted model only matches the two rules, so the explainable rules stay.</p>
+          <ul class="points">
+            <li>Every control is scored for precision and recall against the fraud label. Each gets a production, review or retired status from those results, with the reason recorded. A balance-integrity check that raised 1.18M alerts for 20 frauds was retired from the fraud queue.</li>
+            <li>An exceptions queue with severity, evidence and review status, plus a dbt snapshot that keeps the SCD2 history of every review decision as an audit trail.</li>
+            <li>Answer-key tests on planted mule chains, duplicate payments and fan-in accounts; unit-tested control logic; an enforced contract on the performance report. The full build runs in about 10 seconds on DuckDB.</li>
+            <li>Benford's-law conformity by transaction type, graded with Nigrini's thresholds, plus a frank note on what simulated data can and can't prove.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>Python</li><li>scikit-learn</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/fraud-analytics-mart" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/fraud-analytics-mart#numbers" target="_blank" rel="noopener">Results →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
 
         <div class="building">
           <h3>Currently building</h3>
           <p class="muted">In progress, not yet public. Links will appear here when each repo goes live.</p>
           <ul>
-            <li><strong>Card Transactions &amp; Fraud Analytics Mart:</strong> dbt with snapshots, data contracts, unit tests, a semantic layer and Slim CI</li>
             <li><strong>UK Markets &amp; Macro Lakehouse:</strong> Bank of England and ONS data on Apache Iceberg, with Spark, Trino and write-audit-publish</li>
             <li><strong>"Ask the Warehouse":</strong> an AI agent over a dbt semantic layer via MCP, with an evaluation suite</li>
           </ul>
