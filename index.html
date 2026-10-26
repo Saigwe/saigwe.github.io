@@ -565,6 +565,33 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Credit risk + finance</p>
+              <h3><a href="https://github.com/Saigwe/credit-risk-ifrs9" target="_blank" rel="noopener">Credit Risk: PD Scorecard &amp; IFRS 9 ECL</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/credit-risk-ifrs9/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/credit-risk-ifrs9/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>From a raw account file to the number on the balance sheet, for <strong>30,000 real credit card accounts</strong> (UCI, Taiwan 2005): behavioural features in dbt, a <strong>points scorecard</strong> validated on a hold-out, a <strong>fairness check</strong> on characteristics the model never sees, and an <strong>IFRS 9 loss allowance</strong> with staging, scenario-weighted ECL, transitions and assumption sensitivities.</p>
+          <ul class="points">
+            <li>Hold-out Gini 0.51 and KS 0.40, calibrated decile by decile (7.1% predicted vs 6.8% observed in the safest tenth, 70.2% vs 69.3% in the riskiest), score stability PSI 0.001. Gradient boosting reaches Gini 0.55; the scorecard stays champion because every point is explainable.</li>
+            <li>Allowance NT$504M on NT$3.29B of exposure: coverage 7.8% in stage 1, 46% in stage 2 and 75% in stage 3. Stage 2 holds 18% of exposure but over half the allowance.</li>
+            <li>Sex, age and marital status are never inputs. Approval rates stay within 7% across groups, but the check found the score under-predicts risk for customers 45 and over by about 3 points.</li>
+            <li>Every assumption is a dbt variable with a sensitivity: the undrawn-limit conversion factor moves the allowance ±18%, more than LGD (±13%). Tests recompute the ECL independently in Python for every stage.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>scikit-learn</li><li>IFRS 9</li><li>dbt-trust-tests</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/credit-risk-ifrs9" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/credit-risk-ifrs9#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/credit-risk-ifrs9/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
