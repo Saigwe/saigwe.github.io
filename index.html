@@ -483,11 +483,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -498,19 +493,24 @@
               <img src="https://github.com/Saigwe/people-training-analytics/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> Learning and development analytics: training cost per employee, a competency-gap matrix and attrition cohorts by training history.</p>
+          <p>IBM's <strong>1,470-employee HR attrition file</strong> joined to the skill levels <strong>O*NET</strong> says each job needs, giving training cost per employee, a role-by-skill <strong>competency-gap matrix</strong> and attrition cohorts by training. An <strong>Evidence.dev report</strong> is built in CI and published here.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (16/16 dbt checks passing). Training cost per employee by year and department, with a trained-before-hired check.</li>
-            <li><strong>Next:</strong> Load the IBM attrition data and generate training history.</li>
+            <li>On the real data, people with no training last year left at 27.8%, against 10.9% for those with five or six. Holding overtime, income, satisfaction and 13 other factors equal, each extra training goes with 16% lower odds of leaving (odds ratio 0.84, 95% CI 0.73–0.97).</li>
+            <li>IBM's file has no course records, so a seeded five-year history is generated and labelled synthetic. It is anchored to the real data: each employee's last-year completions equal IBM's training count, and a dbt test checks all 1,470.</li>
+            <li>Cost per employee divides spend by everyone on payroll in the year, not just those who trained. The gap matrix shows research scientists furthest from their required levels and managers closest.</li>
+            <li>57/57 dbt checks pass, including no training outside employment and full headcount coverage in the gap matrix. pytest checks the synthetic history reproduces exactly from its seed.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dbt Core</li><li>DuckDB</li><li>Evidence.dev</li>
+            <li>dbt Core</li><li>DuckDB</li><li>statsmodels</li><li>Evidence.dev</li><li>O*NET</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/people-training-analytics" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/people-training-analytics#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/people-training-analytics#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="reports/people-training/">Evidence report →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
 
