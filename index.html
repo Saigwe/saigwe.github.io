@@ -511,6 +511,33 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Analytics engineering tooling</p>
+              <h3><a href="https://github.com/Saigwe/dbt-trust-tests" target="_blank" rel="noopener">dbt-trust-tests: a reusable test package</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/dbt-trust-tests/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/dbt-trust-tests/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Seven dbt generic tests for the checks controllers, auditors and risk teams ask for: <strong>totals that tie to the ledger</strong>, controls that find <strong>exactly the planted errors</strong>, well-formed <strong>SCD2 history</strong>, correct <strong>point-in-time joins</strong>, and <strong>personal data kept out</strong> of reporting layers. Packaged, versioned (v0.1.0) and used by my other projects.</p>
+          <ul class="points">
+            <li>I had hand-written these checks across 17 projects and in client work. Now three projects install the package instead: Health Claims replaced its SCD2, point-in-time and copied grain tests and added five masking checks, and still passes 51/51 on the real CMS data.</li>
+            <li>Every test is proven both ways: it passes on clean data and returns exactly the number of failing rows planted in bad data. A test that's too lenient or too strict fails CI.</li>
+            <li>CI runs 19 integration tests on DuckDB and Postgres, each with dbt 1.10 and 1.11. Only the regex check differs by warehouse, behind one dispatched macro with Snowflake and BigQuery hooks.</li>
+            <li>Failing rows explain themselves: the group, measure and both values for a reconciliation, or the entity and "overlap", "gap" or "two current versions" for history.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>Jinja</li><li>DuckDB</li><li>Postgres</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/dbt-trust-tests" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/dbt-trust-tests#how-its-tested" target="_blank" rel="noopener">How it's tested →</a>
+            <a href="https://github.com/Saigwe/dbt-trust-tests/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
