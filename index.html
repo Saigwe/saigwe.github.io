@@ -619,6 +619,32 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data engineering + energy regulation</p>
+              <h3><a href="https://github.com/Saigwe/nigeria-disco-performance" target="_blank" rel="noopener">Nigerian DisCo Performance Scorecard</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/nigeria-disco-performance/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/nigeria-disco-performance/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Billing efficiency, collection efficiency and <strong>ATC&amp;C loss for all eleven Nigerian electricity distribution companies</strong>, month by month from April 2024 to June 2026, extracted from <strong>eight NERC quarterly reports</strong> (754 pages of PDF). Every figure is recomputed from the money, checked against what the regulator printed, and scored against each DisCo's <strong>MYTO target</strong>.</p>
+          <ul class="points">
+            <li>In Q2 2026 no DisCo met its target: the sector lost 36.3% against targets of 13.5–29%. Over four quarters that is ₦1,325bn of energy value not recovered, ₦724bn before billing and ₦601bn billed but unpaid.</li>
+            <li>Billing loss is the bigger problem for 9 of 11 DisCos, which points to metering and enumeration. Kano and Jos are the exceptions, with collection below 55%. Eko leads at 21.0%; Kaduna trails at 67.7%.</li>
+            <li>My recomputed ATC&amp;C matches NERC's published figures within 0.15pp (54 of 55 within 0.05pp). Rounding-aware checks still find 18 places where the reports don't add up, and that the billing-efficiency basis changed from GWh to naira in 2025.</li>
+            <li>The extractor finds tables by title, takes only complete rows, and repairs malformed numbers by logged rules, including a "38/02" typo carried from one report into the next.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>pdfplumber</li><li>dbt Core</li><li>DuckDB</li><li>dbt-trust-tests</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/nigeria-disco-performance" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/nigeria-disco-performance#numbers" target="_blank" rel="noopener">Results →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
