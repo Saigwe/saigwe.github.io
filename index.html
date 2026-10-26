@@ -456,34 +456,38 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data engineering + energy</p>
+              <h3><a href="https://github.com/Saigwe/load-forecasting-ops" target="_blank" rel="noopener">Day-Ahead Load Forecasting &amp; Ops Reports</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/load-forecasting-ops/actions/workflows/daily.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/load-forecasting-ops/actions/workflows/daily.yml/badge.svg" alt="Daily run status" height="20">
+            </a>
+          </div>
+          <p>Five years of <strong>half-hourly GB national demand from NESO</strong>, backfilled once and then loaded incrementally, with Open-Meteo weather (as forecast the day before) and bank holidays. A LightGBM day-ahead forecast is tested walk-forward against the naive baseline and against <strong>NESO's own published forecast</strong>. A daily job on GitHub Actions forecasts tomorrow and writes a morning report.</p>
+          <ul class="points">
+            <li>Over 45,031 half-hours from April 2024 to October 2026, starting from NESO's forecast and learning its systematic error beats NESO: 2.69% vs 2.78% MAPE, best in 23 of 31 months and every year. Same-day-last-week scores 8.14%.</li>
+            <li>No leakage: each forecast uses only what was known at 09:45 the day before and is stamped with its issue time. A dbt test fails on any forecast issued too late, and another checks the 46- and 50-period clock-change days.</li>
+            <li>Loads are idempotent upserts from a watermark, and the last day is re-read because NESO revises it. A date-format bug that silently swapped day and month in NESO's files was caught and is unit-tested.</li>
+            <li>The daily job loads, builds, forecasts, scores and reports in under a minute. It posts to Slack when a webhook is set and keeps its forecast log on its own branch, so accuracy is tracked over time.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>LightGBM</li><li>dbt Core</li><li>DuckDB</li><li>GitHub Actions</li><li>NESO / Elexon APIs</li><li>Open-Meteo</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/load-forecasting-ops" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/load-forecasting-ops#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/load-forecasting-ops/tree/ops-log/reports" target="_blank" rel="noopener">Morning reports →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
 
         <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
         <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
 
-        <article class="feature">
-          <div class="feature-head">
-            <div>
-              <p class="tag">Featured · Data engineering + energy</p>
-              <h3><a href="https://github.com/Saigwe/load-forecasting-ops" target="_blank" rel="noopener">Hourly Load Forecasting &amp; Ops Reports</a></h3>
-            </div>
-            <a class="badge" href="https://github.com/Saigwe/load-forecasting-ops/actions/workflows/ci.yml" target="_blank" rel="noopener">
-              <img src="https://github.com/Saigwe/load-forecasting-ops/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
-            </a>
-          </div>
-          <p><strong>Goal:</strong> Half-hourly national demand loaded incrementally with a 5-year backfill, a day-ahead forecast benchmarked against a naive baseline, forecast accuracy tracked over time, and a morning ops report with no manual steps.</p>
-          <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (13/13 dbt checks passing). Daily peak and average demand, a completeness test, and a same-day-last-week baseline with MAPE by month.</li>
-            <li><strong>Next:</strong> Incremental daily loads from NESO; backfill five years.</li>
-          </ul>
-          <ul class="chips" aria-label="Technologies">
-            <li>Airflow</li><li>Dagster</li><li>dbt Core</li><li>LightGBM</li><li>DuckDB</li>
-          </ul>
-          <div class="links">
-            <a href="https://github.com/Saigwe/load-forecasting-ops" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/load-forecasting-ops#roadmap" target="_blank" rel="noopener">Roadmap →</a>
-          </div>
-        </article>
         <article class="feature">
           <div class="feature-head">
             <div>
