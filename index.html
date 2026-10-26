@@ -402,11 +402,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -417,19 +412,28 @@
               <img src="https://github.com/Saigwe/smart-meter-revenue-protection/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> Half-hourly smart-meter data processed at scale to find likely energy theft: the gap between energy consumed and energy bought, per meter and feeder, ranked for inspection with revenue at risk.</p>
+          <p><strong>167.8 million real half-hourly readings</strong> from 5,561 London households (UK Power Networks' Low Carbon London trial), stored in <strong>Delta Lake</strong> and Z-ordered by meter. A prepaid-utility simulation plants four kinds of theft on 3% of meters. Detection sees only metered data, vends and feeder supply, and produces a ranked inspection list with revenue at risk.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (22/22 dbt checks passing). Consumed vs purchased energy per meter per week, ranked within feeder, and unbilled share per feeder.</li>
-            <li><strong>Next:</strong> Ingest the London half-hourly readings into Delta, partitioned by date and clustered by meter.</li>
+            <li>8.5 GB of CSV becomes 1.0 GB of Delta in 3 min 43 s, with nulls and 115,453 duplicates handled. dbt then builds weekly consumed-vs-bought gaps and feeder losses over all 167.8M rows in 4 minutes.</li>
+            <li>Over half of the top 167 meters on the inspection list (54.5%) are real cases, against a 3.2% base rate, and 95.8% of planted cases trip a rule. Explainable rules beat an Isolation Forest (32.9%). Bypasses stay the hard case, and the README says why.</li>
+            <li>Measured, not assumed: requiring an abrupt step lifted precision from 46% to 54.5%. A feeder energy-balance check cut it to 38%, so it was reverted and documented. Feeder losses still rank areas well (correlation 0.54 with planted cases).</li>
+            <li>The same pipeline runs as PySpark jobs, tested equal to dbt to the watt-hour. On 20M real readings in CI it runs in 29 seconds. A lineage test keeps ground truth out of every detection model.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>PySpark</li><li>Databricks</li><li>Delta Lake</li><li>dbt Core</li><li>DuckDB</li>
+            <li>Delta Lake</li><li>PySpark</li><li>DuckDB</li><li>dbt Core</li><li>scikit-learn</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/smart-meter-revenue-protection" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/smart-meter-revenue-protection#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/smart-meter-revenue-protection#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/smart-meter-revenue-protection/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
