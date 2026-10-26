@@ -295,11 +295,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -310,19 +305,27 @@
               <img src="https://github.com/Saigwe/ask-the-warehouse/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> Metrics defined once in a semantic layer, an automated check that dashboards match it, and an AI agent that answers questions through the metrics (via MCP), scored on a benchmark with known answers.</p>
+          <p>14 metrics defined once in a <strong>dbt semantic layer (MetricFlow)</strong> over $6.57B of real federal contract spend (41,980 USAspending actions). An <strong>MCP server</strong> gives an AI agent those metrics and no SQL, and CI proves dashboards match the metrics to the cent.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (15/15 dbt checks passing). Net revenue defined once, a dashboard-matches-model test, and a 4-question benchmark with a SQL guardrail.</li>
-            <li><strong>Next:</strong> Define the metrics once (MetricFlow semantic models or Cube).</li>
+            <li>Benchmark of 54 questions with answers hand-written in SQL, separately from the semantic layer: 44/44 answered correctly through the governed layer, and 10/10 bad requests refused (undefined metrics, raw columns, SQL injection, bulk exports). Queries take 17 ms (p50).</li>
+            <li>A dashboard check compares 258 cells against the semantic layer and catches a planted legacy dashboard that reports gross obligations as "spend" ($408.7M vs $365.7M governed net for one bureau).</li>
+            <li>A Claude agent loop and an MCP server share one tool definition. Guardrail refusals come back as readable errors so the agent can correct itself, tested end to end with scripted replies. Running the agent on the benchmark is the next step.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dbt Core</li><li>MetricFlow</li><li>MCP</li><li>LLM evaluation</li><li>DuckDB</li>
+            <li>dbt Core</li><li>MetricFlow</li><li>MCP</li><li>Claude API</li><li>DuckDB</li><li>pytest</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/ask-the-warehouse" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/ask-the-warehouse#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/ask-the-warehouse#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/ask-the-warehouse/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
