@@ -592,6 +592,33 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Analytics engineering + retail</p>
+              <h3><a href="https://github.com/Saigwe/retail-enterprise-warehouse" target="_blank" rel="noopener">Retail Enterprise Warehouse &amp; Demand Forecast</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/retail-enterprise-warehouse/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/retail-enterprise-warehouse/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Three years of <strong>real Iowa spirits sales</strong> (9.3 million published lines) conformed into one Kimball warehouse: <strong>five business units on one set of KPI definitions</strong>, SCD2 stores joined point in time, a reconciliation to the <strong>regulator's published total</strong>, a four-week <strong>demand forecast</strong>, and a Power BI semantic model with <strong>row-level security</strong> by business unit.</p>
+          <ul class="points">
+            <li>Whole months were published twice: 1.59M duplicate rows, $280.7M of phantom sales. The de-duplicated warehouse matches the Iowa Department of Revenue's FY2025 total within 0.12%; the raw file is 23% over. A dbt test holds it to 1%.</li>
+            <li>Conformance in the open: 4 legacy category codes, 164 renamed or relocated stores kept as SCD2 versions, invoice ids reused on 35,988 invoices, and cost missing before 2025, so margin is shown with its coverage.</li>
+            <li>A global LightGBM model forecasts weekly sales four weeks ahead with 10.1% error across business units in 2025, ahead of same-week-last-year (10.9%). Trained on the raw file, the same model misses by 44%.</li>
+            <li>Business units add up to the company every month by test. The Power BI model (TMDL, DAX, one RLS role per unit) is in git; it still needs opening in Power BI Desktop.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>Parquet</li><li>LightGBM</li><li>Power BI (TMDL)</li><li>dbt-trust-tests</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/retail-enterprise-warehouse" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/retail-enterprise-warehouse#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/retail-enterprise-warehouse/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
