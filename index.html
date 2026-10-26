@@ -429,11 +429,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -444,19 +439,28 @@
               <img src="https://github.com/Saigwe/grid-reliability-gis/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> Feeder assets on a map, customers matched to the network, and the standard reliability indices (SAIDI and SAIFI) by feeder and month, with a hex map of the worst-served areas.</p>
+          <p>London's electricity network from open data. <strong>2.04 million Census households</strong> are mapped to OpenStreetMap primary substations inside UK Power Networks' London zones. SAIDI and SAIFI are computed by substation and month under the regulator's 3-minute rule, on an <strong>H3 hex map</strong> of the worst-served areas. The same spatial dbt models build on DuckDB and PostGIS.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (15/15 dbt checks passing). SAIDI and SAIFI by month and by feeder, with a check that outages never exceed customers served.</li>
-            <li><strong>Next:</strong> Load OSM substations and lines for one city into PostGIS.</li>
+            <li>The open map is checked before it's trusted. OSM has 75% of UKPN's 104 London primary substations and 6% of its secondary sites, and Census households are 85% of UKPN's 2.4 million customers. The gaps show up as one primary absorbing 150,000 households.</li>
+            <li>London in 2025 (synthetic outages, calibrated below UKPN's published group figures): 22.4 interruptions per 100 customers and 23.3 minutes lost. The worst-served 10% of hexes (185,003 households) lose 100 minutes, 4.3 times the city average.</li>
+            <li>Regulatory rules are unit-tested: auto-reclose under 3 minutes and planned works never count, and restoration stages split customers so each is counted once. Outage, monthly and area views reconcile.</li>
+            <li>Real UKPN outages at download time sit on the map with the hexes and substations, and a kepler.gl-ready CSV is included.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>PostGIS</li><li>GeoPandas</li><li>H3</li><li>dbt Core</li><li>DuckDB</li>
+            <li>PostGIS</li><li>DuckDB spatial</li><li>H3</li><li>deck.gl</li><li>dbt Core</li><li>OpenStreetMap</li>
           </ul>
           <div class="links">
+            <a href="maps/london-grid-reliability/" target="_blank" rel="noopener">Interactive map →</a>
             <a href="https://github.com/Saigwe/grid-reliability-gis" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/grid-reliability-gis#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/grid-reliability-gis#numbers" target="_blank" rel="noopener">Results →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
