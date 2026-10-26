@@ -538,6 +538,33 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data platform + FinOps</p>
+              <h3><a href="https://github.com/Saigwe/platform-cost-observability" target="_blank" rel="noopener">Data Platform Cost &amp; Reliability Monitor</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/platform-cost-observability/actions/workflows/daily.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/platform-cost-observability/actions/workflows/daily.yml/badge.svg" alt="Daily run status" height="20">
+            </a>
+          </div>
+          <p>The three things a platform lead checks each morning, in one dbt project: did the pipelines run (<strong>real GitHub Actions history</strong> across all my repos), what is the <strong>warehouse costing</strong> and where is it wasted (Snowflake account usage), and will <strong>month-end close</strong> have the data it needs (Fivetran connector health). A daily job collects, rebuilds and publishes a digest.</p>
+          <ul class="points">
+            <li>Real CI: 132 runs on main across 22 repos, 79.5% green, failures fixed in 0.34 hours on average, 348 billable minutes over 261 jobs. It also found 3 of my older repos still red.</li>
+            <li>On a year of Snowflake usage shaped like ACCOUNT_USAGE (386,721 credits, 165 warehouses, 2.4M queries): 14 uncapped warehouses holding $106k of spend, $18.6k burned with no query running, 8 cost spikes and 3 unused warehouses.</li>
+            <li>On 470 connectors and 1.5M syncs shaped like the Fivetran Platform Connector: every incident and all 8 month-end close alerts found, including connectors paused with no failures to see.</li>
+            <li>Every detector must find exactly the planted problems (answer-key tests from my dbt-trust-tests package), and a lineage test proves no model reads the answers. The README records the four rules the tests made me fix.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>GitHub REST API</li><li>GitHub Actions</li><li>dbt-trust-tests</li><li>Slack webhook</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/platform-cost-observability" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/platform-cost-observability#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/platform-cost-observability/tree/ops-log/digests" target="_blank" rel="noopener">Daily digests →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
