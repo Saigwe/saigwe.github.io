@@ -321,11 +321,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -336,19 +331,28 @@
               <img src="https://github.com/Saigwe/health-claims-warehouse/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> A Kimball warehouse for health-insurance claims and pre-authorisations: turnaround, approval rates and cost per member, with PII masking and daily Airflow orchestration.</p>
+          <p>A Kimball claims warehouse on <strong>857,285 CMS DE-SynPUF claim lines ($863M paid)</strong> for 116,352 synthetic Medicare members. It has SCD2 member history, a pre-authorisation accumulating snapshot, PMPM cost, and identifiers that are hashed and policy-tested. The same dbt project runs on DuckDB and Postgres under a daily Airflow 3 DAG.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (30/30 dbt checks passing). A pre-authorisation accumulating snapshot, monthly approval rate and turnaround, cost per member per month, and date of birth reduced to birth year.</li>
-            <li><strong>Next:</strong> Load Synthea or DE-SynPUF into Postgres bronze.</li>
+            <li>Member history is built as SCD2 from yearly files: 279,711 versions, since 75% of members changed. Claims join the version valid on their service date, so 2008 inpatient PMPM shows $2.67 with no chronic conditions vs $759 with five or more.</li>
+            <li>The pre-authorisation snapshot stops the clock while a request waits for information. Turnaround is checked against CMS's 72-hour / 7-day deadlines, and each request is matched to its admission the way a payer does. Synthetic events are generated on real admissions, and the controls recover the planted $32.3M paid without approval.</li>
+            <li>Data-quality findings against CMS's own totals: 2010 inpatient claims are 5.0% below the summary file, and 278 dateless claim lines are quarantined, not dropped. A masking test fails the build if a raw id leaks, and pytest proves it does.</li>
+            <li>CI runs three jobs: DuckDB, Postgres 16, and Airflow 3.2. The Airflow job runs the DAG twice for the same day and checks that row counts don't change.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dbt Core</li><li>Airflow</li><li>Postgres</li><li>DuckDB</li><li>Metabase</li>
+            <li>dbt Core</li><li>Airflow 3</li><li>Postgres</li><li>DuckDB</li><li>pytest</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/health-claims-warehouse" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/health-claims-warehouse#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/health-claims-warehouse#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/health-claims-warehouse/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
