@@ -268,11 +268,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -283,19 +278,28 @@
               <img src="https://github.com/Saigwe/procurement-spend-cube/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> A spend cube on real public procurement data: supplier normalisation, an evaluated spend classifier, tail-spend and consolidation opportunities, and working-capital (DPO) metrics, packaged to run for many clients.</p>
+          <p>A spend cube on <strong>$7.48B of real federal contract obligations</strong> (41,980 USAspending actions, Department of the Interior FY2025). Each client extract maps to one standard spend line through a small dbt adapter. USAspending, SAP-style and Oracle-style extracts all run in a CI matrix, and every dollar reconciles back to source in a test.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (20/20 dbt checks passing). Keyword spend classification, a spend cube by category and quarter, and supplier Pareto with tail-spend flags.</li>
-            <li><strong>Next:</strong> Load one fiscal year of USAspending awards for one agency.</li>
+            <li>497 of 8,144 suppliers (6.1%) hold 80% of spend. The 7,647-supplier tail holds $1.36B, and facilities &amp; maintenance is the most fragmented category (2,531 suppliers).</li>
+            <li>Supplier name matching scored against registry IDs: fuzzy matching lifts recall from 0.77 to 0.82 (best F1 0.71). Shared names cap precision near 0.63, so suppliers are keyed on the ID and roll up 10,373 entities into 10,180 parents.</li>
+            <li>Classifying spend from descriptions alone, on awards held out of training: a TF-IDF model reaches 0.745 accuracy against PSC labels vs 0.226 for keyword rules.</li>
+            <li>Competition (11.9% not competed), small-business share (52.9%) and working capital (days payable, late interest, early-payment float, on labelled synthetic payment dates). 31 dbt checks run in about 2 seconds.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dbt Core</li><li>DuckDB</li><li>Python</li><li>LLM classification</li><li>Power BI</li>
+            <li>dbt Core</li><li>DuckDB</li><li>Python</li><li>rapidfuzz</li><li>scikit-learn</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/procurement-spend-cube" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/procurement-spend-cube#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/procurement-spend-cube#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/procurement-spend-cube/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
