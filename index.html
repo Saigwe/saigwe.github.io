@@ -348,11 +348,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -363,19 +358,28 @@
               <img src="https://github.com/Saigwe/telecom-churn-feature-store/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> Point-in-time correct churn features in dbt, served through a Feast feature store to a tracked model, with drift monitoring: the same features for training and serving, and no leakage.</p>
+          <p>An end-to-end churn pipeline on the <strong>IBM Telco data (7,043 customers)</strong>. Point-in-time features are built in dbt with leakage tests, served through <strong>Feast</strong> offline and online stores to models tracked and registered in <strong>MLflow</strong>, with batch scoring and <strong>Evidently</strong> drift reports.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (10/10 dbt checks passing). Point-in-time churn features per customer-month with a leakage test.</li>
-            <li><strong>Next:</strong> Load the IBM Telco data and generate monthly usage.</li>
+            <li>Training and serving are proven identical: Feast's point-in-time join reproduces the dbt features on all 41,341 training rows, and the online store matches the offline rows for all 5,163 customers scored (0 mismatches each).</li>
+            <li>Leakage is measured, not just avoided: swapping two point-in-time columns for their extract-time values inflates PR AUC from 0.309 to 0.515 on an out-of-time test. A dbt test recomputes features from earlier months only and must match.</li>
+            <li>Out-of-time results: logistic regression on real-derived features reaches 0.842 ROC AUC. The registered champion reaches 0.913 with 6.4x top-decile lift, using monthly usage that is synthetic, which the README says plainly.</li>
+            <li>The drift report flags 8 of 26 features as the scoring population becomes survivors. A control split shows 0 of 26, so the alert isn't firing on noise.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dbt Core</li><li>Feast</li><li>MLflow</li><li>scikit-learn</li><li>DuckDB</li>
+            <li>dbt Core</li><li>Feast</li><li>MLflow</li><li>Evidently</li><li>scikit-learn</li><li>DuckDB</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/telecom-churn-feature-store" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/telecom-churn-feature-store#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/telecom-churn-feature-store#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/telecom-churn-feature-store/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
