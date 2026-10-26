@@ -375,11 +375,6 @@
           </div>
         </article>
 
-        <div id="more-projects" class="grid" hidden></div>
-
-        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
-        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
-
         <article class="feature">
           <div class="feature-head">
             <div>
@@ -390,19 +385,28 @@
               <img src="https://github.com/Saigwe/uk-markets-lakehouse/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p><strong>Goal:</strong> Official UK statistics and market data on Apache Iceberg: scheduled API pulls, schema evolution and time travel, write-audit-publish so bad data never reaches readers, and every resource in Terraform.</p>
+          <p>Every release ONS has published of <strong>monthly GDP since October 2020 (69 vintages)</strong>, plus CPIH and Bank of England rates, on <strong>Apache Iceberg</strong>. Each vintage is written to a branch, audited, then published to <code>main</code> and tagged for time travel. The AWS deployment is defined in Terraform.</p>
           <ul class="points">
-            <li><strong>Built so far:</strong> a CI-tested pipeline on a synthetic test dataset (12/12 dbt checks passing). Latest value per observation across vintages and a revisions report.</li>
-            <li><strong>Next:</strong> Scheduled pulls from ONS and Bank of England APIs into bronze, keeping every vintage.</li>
+            <li>Write-audit-publish caught real upstream problems and kept them from readers: a GDP release missing total GDP (v14), one with conflicting duplicate values (v67), and a listed release with no file. Garbled rows and CPIH's zero placeholders are handled and counted.</li>
+            <li>Revisions are measured on growth, so re-referencing the index doesn't count. First estimates of monthly GDP growth moved 0.21 pp on average and were revised up by +0.10 pp, mostly in the 2020–21 recovery. 10 of 71 months changed direction. CPIH was never revised, which the same model proves.</li>
+            <li>Schema evolution: a new source widened the table while old snapshots stayed readable. Pulls are incremental and idempotent: 69 releases run in 14.5 s, and a rerun publishes nothing.</li>
+            <li>Terraform covers S3, the Glue catalogue, Athena with a scan cap, ECS Fargate on an EventBridge schedule, SNS alerts and least-privilege IAM. CI validates it on every push, and a weekly canary pulls the live APIs.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>Iceberg</li><li>Spark</li><li>Trino</li><li>Terraform</li><li>dbt Core</li>
+            <li>Apache Iceberg</li><li>Terraform</li><li>AWS</li><li>dbt Core</li><li>DuckDB</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/uk-markets-lakehouse" target="_blank" rel="noopener">Repository →</a>
-            <a href="https://github.com/Saigwe/uk-markets-lakehouse#roadmap" target="_blank" rel="noopener">Roadmap →</a>
+            <a href="https://github.com/Saigwe/uk-markets-lakehouse#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/uk-markets-lakehouse/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
           </div>
         </article>
+
+        <div id="more-projects" class="grid" hidden></div>
+
+        <h3 class="subhead" id="more-featured" style="margin-top:40px">More featured projects</h3>
+        <p class="muted">Each project rebuilds work from my roles on public or synthetic data. Every repo is public and CI-tested; each card says what is built and what comes next.</p>
+
         <article class="feature">
           <div class="feature-head">
             <div>
