@@ -67,20 +67,21 @@
               <img src="https://github.com/Saigwe/semiconductor-yield-analytics/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
             </a>
           </div>
-          <p>A governed lakehouse for semiconductor manufacturing test data (UCI SECOM, 1,567 wafer runs × 590 sensors). It goes from raw sensor readings to <strong>one trusted yield metric</strong>, a ranked list of <strong>suspect sensors</strong>, multivariate <strong>anomaly scores</strong>, and plain-English questions answered by <strong>guardrailed, benchmarked natural-language-to-SQL</strong>.</p>
+          <p>A governed lakehouse on <strong>1,567 real wafer test runs</strong> (UCI SECOM, 590 sensors, 93.4% yield). It defines yield once, runs a daily <strong>p-chart</strong>, ranks the sensors that separate failing wafers <strong>beyond chance</strong>, ranks wafers for inspection on later, unseen data, and answers plain-English questions through a <strong>Claude agent that can't leave the gold layer</strong>. An Evidence.dev dashboard is built in CI.</p>
           <ul class="points">
-            <li>Bronze → silver → gold with an explicit grain at every layer: Kimball dimensions, wafer and sensor facts, yield defined exactly once</li>
-            <li>Business-rule tests catch outputs that are "technically valid but semantically wrong": yield ∈ [0,1], fails ≤ wafers, every wafer has readings</li>
-            <li>The same dbt models run on DuckDB (local and CI) and Databricks + Delta Lake (cloud)</li>
-            <li>The NL-to-SQL guardrail allows only single SELECTs against approved gold models; execution accuracy is scored against gold SQL</li>
+            <li>Control limits come only from earlier, passing wafers, and a dbt unit test proves it. In the later half, passing wafers trip more than twice as many limits (10.9 vs 4.4 per wafer): the process drifted.</li>
+            <li>Only 3 of 440 sensors pass both a 5% false-discovery check and a label-shuffle check, so the raw top-10 list would mislead.</li>
+            <li>On the later 783 wafers, models fitted once do no better than chance. Walk-forward gradient boosting reaches 3x the base rate in average precision (0.147, 95% CI 0.08–0.26), with all 10 methods tried reported.</li>
+            <li>The NL-to-SQL guardrail uses DuckDB's own parser: 28 of 28 adversarial cases, where the regex it replaced let 6 attacks through. 82/82 dbt checks and 33 pytest tests pass.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dbt Core</li><li>Databricks</li><li>Delta Lake</li><li>DuckDB</li><li>Python</li><li>scikit-learn</li><li>GitHub Actions</li>
+            <li>dbt Core</li><li>DuckDB</li><li>scikit-learn</li><li>Claude API</li><li>Evidence.dev</li><li>Databricks-ready</li><li>GitHub Actions</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/semiconductor-yield-analytics" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/semiconductor-yield-analytics#numbers" target="_blank" rel="noopener">Results →</a>
+            <a href="reports/semiconductor-yield/">Dashboard →</a>
             <a href="https://github.com/Saigwe/semiconductor-yield-analytics/blob/main/docs/design_doc.md" target="_blank" rel="noopener">Design doc →</a>
-            <a href="https://github.com/Saigwe/semiconductor-yield-analytics/blob/main/docs/layer_plan.md" target="_blank" rel="noopener">Layer plan →</a>
           </div>
         </article>
 
