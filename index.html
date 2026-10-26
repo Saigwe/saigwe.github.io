@@ -645,6 +645,59 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Internal audit + access controls</p>
+              <h3><a href="https://github.com/Saigwe/itgc-access-analytics" target="_blank" rel="noopener">IT General Controls &amp; Access-Risk Analytics</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/itgc-access-analytics/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/itgc-access-analytics/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Seven access controls (leavers, workstation access, privileged out-of-hours access, removable media, joiners/movers/leavers) tested monthly for <strong>1,000 employees over 17 months</strong> of the <strong>CERT r4.2 insider-threat benchmark</strong> (855k logons, 405k device events). Each control has a <strong>KRI with RAG thresholds</strong>, and they feed a review-list ranking that is <strong>scored against the benchmark's answer key</strong> of 70 planted insiders.</p>
+          <ul class="points">
+            <li>The ranking's top 10 are all insiders, and its top 50 hold 36 of the 70 (chance would give 3.5). Every insider in the data-theft-before-leaving scenario is in the top 50. No weight was fitted to the answer key, and all three score designs I tried are reported.</li>
+            <li>The test shows which controls detect and which only make noise. First removable-media use flags 35 people, all 35 insiders. Admin out-of-hours access fires for 100% of administrators every month: a badly designed control, not a failing one.</li>
+            <li>HR snapshots describe the month's end: 154 of 155 leavers log on after leaving the directory, so the leaver control measures against the month end. One scenario is out of reach without file and web logs, and the README says so.</li>
+            <li>SCD2 employee history with a 'Left' version, reconciliation tests on every logon and connect, and no names or e-mails in gold, all enforced in the build.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>Python</li><li>dbt-trust-tests</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/itgc-access-analytics" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/itgc-access-analytics#results" target="_blank" rel="noopener">Results →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data governance + discovery</p>
+              <h3><a href="https://github.com/Saigwe/data-discovery-governance" target="_blank" rel="noopener">Data Discovery &amp; Governance Across PostgreSQL, MongoDB and JSON</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/data-discovery-governance/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/data-discovery-governance/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A discovery tool that profiles a <strong>three-system estate</strong> (Pagila in PostgreSQL 18, an app team's MongoDB, a partner's JSON feed). It infers keys and <strong>links between systems that declare none</strong>, classifies personal data, catches drift and numbers sent as text, and <strong>scores data confidence</strong>. It writes the data dictionary, source map, PII register and <strong>dbt sources with generated tests</strong>, then is graded against what is known to be true.</p>
+          <ul class="points">
+            <li>Against Postgres's declared keys: primary keys 13 of 13, foreign keys found with precision and recall of 0.955 (21 of 22). Across systems, all 8 planted links are found, plus a real natural-key lookup nobody planted.</li>
+            <li>The first run scored 0.50 precision. Four fixes, each with a unit test, got it to 0.955: own-key parents, exact homes beating 1:1 extensions, partition keys mapped to their table, and "address" no longer singularised to "addres".</li>
+            <li>21 PII fields with no false positives. Fields are judged by path in context, so <code>name.first</code> and <code>cast[].name</code> are people but a category's <code>name</code> is not, and a date is never taken for a phone number.</li>
+            <li>17 of 19 datasets are ready for governed reporting. The confidence score is explainable line by line, and drift and text-typed amounts pull the app and partner data down.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>PostgreSQL 18</li><li>MongoDB 7</li><li>JSON Lines</li><li>dbt (generated sources)</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/data-discovery-governance" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/data-discovery-governance#results" target="_blank" rel="noopener">Results →</a>
+            <a href="https://github.com/Saigwe/data-discovery-governance/blob/catalog/catalog/data_dictionary.md" target="_blank" rel="noopener">Data dictionary →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
