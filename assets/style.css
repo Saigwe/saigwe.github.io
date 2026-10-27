@@ -130,6 +130,8 @@ h3 { font-size: 1.1rem; }
 .subrole h4 { margin: 0 0 4px; font-size: 1rem; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
 .sub-when { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .8rem; font-weight: 500; color: var(--muted); }
 .subrole p { margin: 0; }
+.timeline .what p.rebuilt { margin: 10px 0 0; font-size: .9rem; color: var(--muted); }
+.timeline .what p.rebuilt a { color: var(--accent); }
 
 /* Skills */
 .skill-grid { display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 20px; }
