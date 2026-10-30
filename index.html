@@ -55,7 +55,7 @@
     <section id="projects" class="section">
       <div class="wrap">
         <h2>Projects</h2>
-        <p class="section-lead">Public, reproducible work. Each repo has a design doc, tests and CI.</p>
+        <p class="section-lead">Public, reproducible work. Every repo has tests and CI, and says which data is real and which is synthetic.</p>
 
         <article class="feature">
           <div class="feature-head">
@@ -695,6 +695,212 @@
             <a href="https://github.com/Saigwe/data-discovery-governance" target="_blank" rel="noopener">Repository →</a>
             <a href="https://github.com/Saigwe/data-discovery-governance#results" target="_blank" rel="noopener">Results →</a>
             <a href="https://github.com/Saigwe/data-discovery-governance/blob/catalog/catalog/data_dictionary.md" target="_blank" rel="noopener">Data dictionary →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Analytics engineering + SaaS</p>
+              <h3><a href="https://github.com/Saigwe/dbt-saas-metrics" target="_blank" rel="noopener">dbt SaaS Metrics: MRR, churn and accounts</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/dbt-saas-metrics/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/dbt-saas-metrics/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A dbt project that turns raw subscription and product-usage data for a B2B SaaS business into trusted <strong>MRR, churn and account metrics</strong>. It runs on <strong>DuckDB with no cloud account, and on BigQuery with one flag</strong>, on deterministic synthetic data.</p>
+          <ul class="points">
+            <li>The MRR bridge finance uses: opening MRR plus new, expansion, contraction, churn and reactivation equals closing, <strong>reconciled by a test for every month</strong>.</li>
+            <li>16 tests on every build, including a grain test on the account-month fact and relationships from subscriptions to accounts.</li>
+            <li>A dispatched <code>month_spine</code> macro uses DuckDB's <code>generate_series</code> or BigQuery's <code>generate_date_array</code>, so the same models run on both warehouses.</li>
+            <li>It is the governed source for two other projects: the semantic-layer AI agent answers from its marts, and the data-quality assistant reads its test results.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>BigQuery</li><li>Jinja macros</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/dbt-saas-metrics" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/dbt-saas-metrics#sample-output-mrr-bridge" target="_blank" rel="noopener">MRR bridge →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Analytics engineering + AI</p>
+              <h3><a href="https://github.com/Saigwe/semantic-layer-ai-agent" target="_blank" rel="noopener">Semantic-Layer AI Agent</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/semantic-layer-ai-agent/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/semantic-layer-ai-agent/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A Claude agent that answers business questions <strong>only through 8 governed metrics</strong> defined over the tested dbt-saas-metrics marts. The model picks a metric and its parameters; the code builds the SQL. It never writes SQL itself.</p>
+          <ul class="points">
+            <li>Table names and expressions come from the catalogue and every value is a bound parameter, so SQL injection isn't possible, and a test proves it.</li>
+            <li>Strict tool schemas keep inputs valid; bad inputs go back to Claude as errors it can correct. Every answer returns the SQL and parameters it ran, for audit.</li>
+            <li>Out-of-scope questions get a fixed refusal plus the list of available metrics, not a guess.</li>
+            <li>A 12-question eval set (10 answerable, 2 out of scope) with expected values computed from the marts in SQL. The agent loop is tested with a fake client; <strong>the live eval run is next</strong>, as the README says.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Claude API</li><li>Tool use</li><li>dbt</li><li>DuckDB</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/semantic-layer-ai-agent" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/semantic-layer-ai-agent#evaluation" target="_blank" rel="noopener">Evaluation →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data quality + AI</p>
+              <h3><a href="https://github.com/Saigwe/llm-data-quality-assistant" target="_blank" rel="noopener">LLM Data Quality Assistant</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/llm-data-quality-assistant/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/llm-data-quality-assistant/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Turns a nightly <strong>dbt test run</strong> into a plain-English briefing data owners can act on: <code>run_results.json</code> and <code>manifest.json</code> become ranked findings mapped to the model each test checks.</p>
+          <ul class="points">
+            <li>A deterministic markdown report works offline with no API key; an optional Claude briefing explains impact, likely causes and owners.</li>
+            <li><strong>Grounded by design:</strong> the model only sees the verified table of failing tests, the prompt forbids inventing numbers, and the deterministic report always ships underneath.</li>
+            <li>Exit code 1 on any failing test, so it can gate a CI job; without credentials it falls back to the report instead of failing the pipeline.</li>
+            <li>7 tests cover parsing, ranking, test-to-model mapping, the CLI and the Claude call with a fake client. The examples use sample dbt artifacts.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>Claude API</li><li>dbt artifacts</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/llm-data-quality-assistant" target="_blank" rel="noopener">Repository →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data engineering + AI training data</p>
+              <h3><a href="https://github.com/Saigwe/text-dedup-quality-pipeline" target="_blank" rel="noopener">Text Dedup &amp; Quality Pipeline</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/text-dedup-quality-pipeline/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/text-dedup-quality-pipeline/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Curation for AI training text: exact deduplication, <strong>near-duplicate detection with MinHash + LSH written from scratch in NumPy</strong>, heuristic quality filters, and an audit that gives a reason for every removal.</p>
+          <ul class="points">
+            <li>Scored, not eyeballed: on a labelled synthetic corpus of 550 documents it keeps 405, with <strong>100% precision and 96.7% recall</strong> on removals.</li>
+            <li>The 5 misses are near-copies under the 0.7 similarity threshold; lowering it catches more but risks merging distinct documents that share boilerplate. That trade-off is the main tuning decision.</li>
+            <li>Cheapest checks first: SHA-256 removes exact copies before MinHash. 32 LSH bands × 4 rows compare only documents that share a band, never all pairs.</li>
+            <li>Next: a public corpus and a PySpark port of the MinHash step for scale.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>NumPy</li><li>MinHash</li><li>LSH</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/text-dedup-quality-pipeline" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/text-dedup-quality-pipeline/blob/main/output/audit.md" target="_blank" rel="noopener">Audit →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data engineering + Spark</p>
+              <h3><a href="https://github.com/Saigwe/pyspark-lakehouse-pipeline" target="_blank" rel="noopener">PySpark Lakehouse Pipeline</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/pyspark-lakehouse-pipeline/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/pyspark-lakehouse-pipeline/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A <strong>bronze → silver → gold</strong> pipeline in PySpark that turns messy order and shipment feeds (duplicate events, blank quantities, unknown products, missing deliveries) into a dimensional model and <strong>monthly delivery KPIs</strong> by warehouse and carrier.</p>
+          <ul class="points">
+            <li>Bad rows are <strong>quarantined with a reason</strong>, never silently dropped, so data quality is measurable and owners can fix the source.</li>
+            <li>Quality gates fail the job: an empty fact table, duplicate order ids, null order values, or more than 5% of input quarantined.</li>
+            <li>Explicit schemas on raw JSON, so a source change fails loudly. The fact table is partitioned by warehouse, the most common filter.</li>
+            <li>Pure DataFrame transforms, tested with a local SparkSession in CI, and portable to Databricks by switching Parquet to Delta. The data is generated.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>PySpark</li><li>Spark SQL</li><li>Parquet / Delta</li><li>pytest</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/pyspark-lakehouse-pipeline" target="_blank" rel="noopener">Repository →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data engineering + streaming</p>
+              <h3><a href="https://github.com/Saigwe/kafka-streaming-pipeline" target="_blank" rel="noopener">Kafka Streaming Pipeline</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/kafka-streaming-pipeline/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/kafka-streaming-pipeline/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Parcel-tracking events through Kafka: on-time delivery KPIs per depot in <strong>5-minute event-time windows</strong> with a watermark, written to DuckDB, with alerts when a depot falls well below its own baseline. A simulation runs 6 hours across 4 depots, with duplicates, late data, malformed messages and a planted incident.</p>
+          <ul class="points">
+            <li>Of about 30,000 messages: 24,616 counted, 868 duplicates ignored, 295 late and 128 invalid sent to a dead-letter topic.</li>
+            <li><strong>All 18 alerts fired at the incident depot inside the incident window, with no false alarms elsewhere.</strong> An earlier 10-point threshold on thinner windows did fire false alarms; the tuning is in the README.</li>
+            <li>At-least-once delivery with idempotent processing: offsets commit after processing, duplicates drop by event id, and the sink upserts.</li>
+            <li>The processing core is broker-agnostic and tested in CI; the thin Kafka wrappers haven't yet run against a live broker, as the README says.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Kafka (Redpanda)</li><li>confluent-kafka</li><li>Python</li><li>DuckDB</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/kafka-streaming-pipeline" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/kafka-streaming-pipeline/blob/main/output/run_summary.md" target="_blank" rel="noopener">Run summary →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Operations analytics</p>
+              <h3><a href="https://github.com/Saigwe/ops-root-cause-analysis" target="_blank" rel="noopener">Operations Root-Cause Analysis</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/ops-root-cause-analysis/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/ops-root-cause-analysis/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>When a frontline metric moves, the hard part is <strong>why</strong>. Twelve weeks of simulated contacts (~50,000) for a multi-site, multi-vendor trust and safety operation hide one planted problem; <strong>four SQL queries find it without being told where to look</strong>.</p>
+          <ul class="points">
+            <li>The answer: SLA on one queue at one site and vendor fell from 97.4% to 74.0% from week 8, the largest contribution (−1.84 pts) to the overall drop, while the top line barely moved.</li>
+            <li>Demand was flat (+1.5%), but handle time rose 38% as new hires took up to 74% of contacts: 867 s per contact against 541 s for tenured staff, pushing workload to 117% of contracted hours.</li>
+            <li>Contribution analysis by segment, then drivers inside it: demand, handle time, staffing mix and occupancy. The change week is detected automatically.</li>
+            <li>The report text is generated from the query results, including what the data cannot tell us, so nothing about the answer is hard-coded.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>SQL</li><li>DuckDB</li><li>Python</li><li>matplotlib</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/ops-root-cause-analysis" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/ops-root-cause-analysis/blob/main/output/report.md" target="_blank" rel="noopener">Report →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Quality improvement + healthcare</p>
+              <h3><a href="https://github.com/Saigwe/spc-control-charts" target="_blank" rel="noopener">SPC Control Charts</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/spc-control-charts/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/spc-control-charts/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Statistical process control in the style of NHS England's <strong>Making Data Count</strong>: XmR charts with special-cause rules, a <strong>variation</strong> and an <strong>assurance</strong> verdict per metric, on sample data.</p>
+          <ul class="points">
+            <li>Falls per 1,000 bed days: special cause, improving after the programme started, but still hit and miss against target.</li>
+            <li>Complaints answered in 25 days: common cause, so hitting 85% depends on luck and the process itself needs redesign. Incidents awaiting review: a growing backlog since week 40.</li>
+            <li>Limits come from a 26-week baseline projected forward, so later changes show as special cause instead of being absorbed.</li>
+            <li>9 tests cover each rule's edge cases (6 vs 7 points in a run, 5 vs 6 in a trend), metric direction, assurance logic and planted signals end to end.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>matplotlib</li><li>SPC</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/spc-control-charts" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/spc-control-charts/blob/main/output/report.md" target="_blank" rel="noopener">Report →</a>
           </div>
         </article>
 
