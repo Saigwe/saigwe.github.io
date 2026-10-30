@@ -23,6 +23,7 @@
       <a class="brand" href="#top" aria-label="Stanley Igwe, home"><span class="logo">SI</span> Stanley Igwe</a>
       <nav aria-label="Primary">
         <a href="#projects">Projects</a>
+        <a href="case-studies.html">Case studies</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#contact" class="nav-cta">Contact</a>
@@ -151,7 +152,9 @@
           <ul class="points">
             <li>Month-end open items for every invoice. Aging is reported by the segment each customer had at that month-end, through a point-in-time join to a type-2 customer dimension.</li>
             <li>The cash-application fact is incremental on load time. A script proves the incremental run equals a full rebuild across 650k rows, including payments that load days late.</li>
-            <li>59 dbt checks run in about 4 seconds, covering the GL tie-out, cash never over-applied, aging totals and KPI ranges, plus unit tests on the type-2 windows and the month-end balance logic.</li>
+            <li>Dunning tranches with <strong>positive-debt targeting</strong>: 9,072 customers chased for $44.4M, while 411 overdue customers whose balance is disputed or covered by unapplied cash are left alone.</li>
+            <li>41,244 CRM phone numbers standardised to E.164 and deduplicated to 28,709, matching an answer key exactly; 239 numbers shared between customers are flagged, not merged.</li>
+            <li>72 dbt checks, covering the GL tie-out, cash never over-applied, aging totals, KPI ranges, the dunning rules and the phone answer key, plus unit tests on the type-2 windows and the month-end balance logic.</li>
             <li>A Streamlit app with KPI trends, aging, a collections worklist with customer drill-down, and a pipeline-health tab built from recorded dbt runs.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
@@ -499,7 +502,8 @@
             <li>On the real data, people with no training last year left at 27.8%, against 10.9% for those with five or six. Holding overtime, income, satisfaction and 13 other factors equal, each extra training goes with 16% lower odds of leaving (odds ratio 0.84, 95% CI 0.73–0.97).</li>
             <li>IBM's file has no course records, so a seeded five-year history is generated and labelled synthetic. It is anchored to the real data: each employee's last-year completions equal IBM's training count, and a dbt test checks all 1,470.</li>
             <li>Cost per employee divides spend by everyone on payroll in the year, not just those who trained. The gap matrix shows research scientists furthest from their required levels and managers closest.</li>
-            <li>57/57 dbt checks pass, including no training outside employment and full headcount coverage in the gap matrix. pytest checks the synthetic history reproduces exactly from its seed.</li>
+            <li>A synthetic <strong>recruitment funnel</strong> (3,882 applications to 271 starters, including a 220-person sales campaign) with structured interview scoring. Calibrating each interviewer against their co-panellists finds exactly the two planted miscalibrated interviewers, whose bias changed 82 offer decisions.</li>
+            <li>79/79 dbt checks pass, including no training outside employment, full headcount coverage in the gap matrix, a funnel that never widens and the calibration answer key. pytest checks the synthetic history reproduces exactly from its seed.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
             <li>dbt Core</li><li>DuckDB</li><li>statsmodels</li><li>Evidence.dev</li><li>O*NET</li><li>GitHub Actions</li>

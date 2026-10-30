@@ -144,3 +144,12 @@ h3 { font-size: 1.1rem; }
 
 .contact { text-align: left; }
 .footer { padding: 28px 0; color: var(--muted); font-size: .88rem; border-top: 1px solid var(--border); }
+
+/* Case studies */
+.case h2 { font-size: 1.35rem; margin: 0 0 12px; }
+.star { display: grid; grid-template-columns: 1fr; gap: 4px 20px; margin: 8px 0 16px; }
+@media (min-width: 720px) { .star { grid-template-columns: 110px 1fr; } }
+.star dt { font-weight: 600; color: var(--accent-2); padding-top: 2px; }
+.star dd { margin: 0 0 10px; }
+.star dd .points { margin: 0; }
+.flow { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .78rem; line-height: 1.5; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 14px; overflow-x: auto; color: var(--text); }

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case Studies | Stanley Igwe</title>
+  <meta name="description" content="Two case studies from Stanley Igwe's client work: commission revenue reconciled to the general ledger with $0 variance, and an undocumented device estate made reportable.">
+  <meta property="og:title" content="Case Studies | Stanley Igwe">
+  <meta property="og:description" content="Commission revenue that ties to the ledger, and a device estate made reportable: what I did, how, and the result.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://saigwe.github.io/case-studies.html">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3a5f'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3ESI%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html" aria-label="Stanley Igwe, home"><span class="logo">SI</span> Stanley Igwe</a>
+      <nav aria-label="Primary">
+        <a href="index.html#projects">Projects</a>
+        <a href="case-studies.html" aria-current="page">Case studies</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#contact" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="wrap">
+        <h1>Case studies</h1>
+        <p class="section-lead">Two pieces of recent client work, told as situation, task, action and result. Figures are the ones on my CV. No client code, schemas, screenshots or data appear here; the diagrams are generic, and each case links to a public project that rebuilds the method on open data.</p>
+
+        <article class="feature case" id="commission-reconciliation">
+          <p class="tag">Case study 1 · Accounting analytics · DoorDash (independent consultant, 2026)</p>
+          <h2>Commission revenue that ties to the general ledger with $0 variance</h2>
+          <dl class="star">
+            <dt>Situation</dt>
+            <dd>Commission revenue under ASC 606 depends on a standalone selling price (SSP) analysis across merchants and currencies. It was recalculated by a legacy script, and the external auditors needed the monthly USD results to agree with the general ledger.</dd>
+            <dt>Task</dt>
+            <dd>Replace the script with a pipeline the accounting team and auditors could rely on: same answer every month, every difference explained.</dd>
+            <dt>Action</dt>
+            <dd>
+              <ul class="points">
+                <li>Designed an end-to-end <strong>incremental dbt pipeline</strong>, from staging through to the reconciliation.</li>
+                <li>Built a <strong>reusable FX-rate dimension</strong>, so every currency converts the same way in every model.</li>
+                <li>Added <strong>merchant floor, median and ceiling range checks</strong>, so an implausible SSP is caught before it reaches the numbers.</li>
+                <li>Wrote <strong>25 data tests</strong>, and reconciled the monthly USD results to the GL.</li>
+              </ul>
+            </dd>
+            <dt>Result</dt>
+            <dd><strong>$0 variance to the general ledger</strong> for the external auditors, and the legacy script-based recalculation retired. In the same accounting work I corrected about <strong>$44M of business-line misclassification</strong>.</dd>
+          </dl>
+          <pre class="flow" aria-label="Generic pipeline diagram">source systems ─▶ staging ─▶ FX-rate dimension ─▶ SSP and commission models
+                                                         │
+                         merchant range checks + 25 tests ┤
+                                                         ▼
+                              monthly USD results ─▶ reconciliation to GL ─▶ auditors</pre>
+          <p><strong>What I'd tell a hiring manager:</strong> a reconciliation is a product, not a one-off check. It earns trust when it runs every month, explains every difference, and fails loudly before anyone else finds a problem.</p>
+          <div class="links">
+            <a href="https://github.com/Saigwe/revenue-gl-reconciliation" target="_blank" rel="noopener">Public rebuild: Revenue-to-GL Reconciliation →</a>
+            <a href="https://github.com/Saigwe/dbt-trust-tests" target="_blank" rel="noopener">The reconciliation tests, packaged →</a>
+          </div>
+        </article>
+
+        <article class="feature case" id="device-estate">
+          <p class="tag">Case study 2 · Data discovery and reporting · VoCoVo (independent consultant, 2026)</p>
+          <h2>Making an undocumented device estate reportable</h2>
+          <dl class="star">
+            <dt>Situation</dt>
+            <dd>Device and operational data sat across PostgreSQL, MongoDB and semi-structured JSON, with no data dictionary, no map of how sources related, and recurring reports that took about a day to produce.</dd>
+            <dt>Task</dt>
+            <dd>As data and reporting lead: find out what the data was and how far it could be trusted, then give the business governed reporting it could plan from.</dd>
+            <dt>Action</dt>
+            <dd>
+              <ul class="points">
+                <li><strong>Profiled 56 tables</strong> across PostgreSQL, MongoDB and JSON, and <strong>prioritised 36</strong> for a governed reporting foundation.</li>
+                <li>Built the <strong>data dictionary</strong>, a <strong>source map</strong>, and a model with <strong>explicit data-confidence measures</strong>, so every figure carries how much it can be relied on.</li>
+                <li>Built estate-wide dashboards and SQL extracts over <strong>~680k devices</strong>, which surfaced about 6.4k controllers missing from the earlier reporting scope.</li>
+                <li>Normalised hardware <strong>failure rates per 1,000 active units</strong>, so products with very different install bases could be compared for end-of-life planning.</li>
+              </ul>
+            </dd>
+            <dt>Result</dt>
+            <dd>Selected recurring reporting cut from <strong>about a day to about an hour</strong>, on a documented, prioritised data foundation.</dd>
+          </dl>
+          <pre class="flow" aria-label="Generic discovery diagram">PostgreSQL ─┐
+MongoDB    ─┼─▶ profile 56 tables ─▶ prioritise 36 ─▶ dictionary + source map + confidence
+JSON       ─┘                                               │
+                                                            ▼
+                              governed reporting model ─▶ estate dashboards (~680k devices)</pre>
+          <p><strong>What I'd tell a hiring manager:</strong> before building anything, find out what the data is and how much it can be trusted, and write that down where everyone can see it. The dashboards only became quick once that was done.</p>
+          <div class="links">
+            <a href="https://github.com/Saigwe/data-discovery-governance" target="_blank" rel="noopener">Public rebuild: Data Discovery &amp; Governance →</a>
+            <a href="https://github.com/Saigwe/device-fleet-reliability" target="_blank" rel="noopener">Failure rates per 1,000 units: Device Fleet Reliability →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© <span id="year">2026</span> Stanley Igwe · <a href="index.html">Back to the portfolio</a></div>
+  </footer>
+</body>
+</html>
