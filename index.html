@@ -960,6 +960,186 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data engineering + orchestration</p>
+              <h3><a href="https://github.com/Saigwe/ingestion-orchestration" target="_blank" rel="noopener">Ingestion &amp; Orchestration</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/ingestion-orchestration/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/ingestion-orchestration/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>An end-to-end pipeline in <strong>Dagster</strong>: change data capture from an application database, extraction from a flaky paginated billing API, a customer health model, and <strong>reverse ETL back into the CRM every hour instead of overnight</strong>. The sources are simulated (SQLite with a Debezium-style change log, and an API that fails on purpose).</p>
+          <ul class="points">
+            <li>Over six simulated hours, CDC applied <strong>74 updates and 4 account deletions</strong>. An incremental load keyed on <code>updated_at</code> would never see the deletions.</li>
+            <li>The billing API failed 4 times and every failure was retried with exponential backoff; a cursor and high-water mark keep extraction incremental.</li>
+            <li>Reverse ETL diffs against the last synced snapshot, so only changed accounts (63% of rows) reach the CRM.</li>
+            <li><strong>Idempotent by test:</strong> a rerun with no new source activity applies 0 change events and sends 0 CRM updates. Asset checks reconcile the warehouse to the source on every run.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Dagster</li><li>DuckDB</li><li>Change data capture</li><li>Reverse ETL</li><li>Python</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/ingestion-orchestration" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/ingestion-orchestration/blob/main/output/pipeline_report.md" target="_blank" rel="noopener">Run report →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Platform engineering + cost control</p>
+              <h3><a href="https://github.com/Saigwe/platform-as-code" target="_blank" rel="noopener">Platform as Code</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/platform-as-code/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/platform-as-code/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>The analytics platform defined in a repository: <strong>Terraform</strong> for Snowflake (database, schemas, functional roles, grants, warehouses and resource monitors), a <strong>Docker</strong> image that runs dbt, and <strong>Kubernetes</strong> CronJobs with Kustomize overlays for dev and prod.</p>
+          <ul class="points">
+            <li>Warehouses can only be created through a module that always attaches a resource monitor, so prod spend is <strong>capped at $2,010 a month in code</strong> (dev at $360).</li>
+            <li>Policy-as-code checks every pull request: size limits per environment, auto-suspend, budgets, no privileged roles, no root containers, pinned images, and that each Kubernetes config points at a warehouse and role Terraform actually defines.</li>
+            <li>A sample risky change (an XLARGE dev warehouse with hourly auto-suspend and ACCOUNTADMIN access) is rejected for four separate reasons.</li>
+            <li>CI runs <code>terraform fmt</code> and <code>validate</code>, kubeconform on both rendered overlays and a Docker build. It hasn't been applied to a live Snowflake account; the deploy workflow lists the secrets it needs.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Terraform</li><li>Snowflake</li><li>Docker</li><li>Kubernetes</li><li>Kustomize</li><li>GitHub Actions</li><li>Python</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/platform-as-code" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/platform-as-code/blob/main/output/platform_report.md" target="_blank" rel="noopener">Guardrail report →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data quality + observability</p>
+              <h3><a href="https://github.com/Saigwe/data-contracts-observability" target="_blank" rel="noopener">Data Contracts &amp; Observability</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/data-contracts-observability/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/data-contracts-observability/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Source teams and the data team agree a <strong>contract</strong> for each dataset (schema, quality rules, freshness SLA and normal volume) in YAML. Every load is checked against it, and lineage decides which dashboards to hold. Four incidents are planted in synthetic data on the same morning.</p>
+          <ul class="points">
+            <li>All four are caught: a renamed column, a 60% volume drop (robust z = -10 against the last 14 loads), 6% of orders without a customer, and a load 26 hours late against a 24-hour SLA.</li>
+            <li>A <strong>circuit breaker</strong> stops affected models publishing: 3 of 4 reports go on hold while the Support SLA dashboard stays trusted, and no incorrect figures reach the board.</li>
+            <li>Two reports: an engineering incident report with owners, runbook steps and the blast radius by dashboard tier, and a plain-English status page for leadership.</li>
+            <li>Emits OpenLineage run events with data-quality assertions, ready for Marquez, DataHub or Atlan.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>YAML contracts</li><li>OpenLineage</li><li>DuckDB</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/data-contracts-observability" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/data-contracts-observability/blob/main/output/data_health_status.md" target="_blank" rel="noopener">Status page →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Governance + privacy</p>
+              <h3><a href="https://github.com/Saigwe/data-governance-privacy" target="_blank" rel="noopener">Data Governance &amp; Privacy</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/data-governance-privacy/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/data-governance-privacy/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Governance that runs as code: discover where personal data lives, enforce who sees what through generated secure views, and handle the <strong>right to erasure end to end</strong>, on a synthetic warehouse with hand-labelled ground truth.</p>
+          <ul class="points">
+            <li>Classification uses column names <strong>and</strong> sampled values: <strong>20/20 columns correct</strong>, including emails hidden in free-text support tickets that no one had documented.</li>
+            <li>A YAML policy maps each role and data class to an action and generates 12 secure views: analysts get stable hashes that still join, birth years instead of dates, redacted ticket text and no IBANs.</li>
+            <li>GDPR Article 17 erasure deletes the customer everywhere, including marketing events matched by email, keeps order amounts under a pseudonym for financial retention, verifies nothing identifying remains and logs the request.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>DuckDB</li><li>SQL secure views</li><li>Policy as code</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/data-governance-privacy" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/data-governance-privacy/blob/main/output/governance_memo.md" target="_blank" rel="noopener">Governance memo →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · FinOps + Snowflake</p>
+              <h3><a href="https://github.com/Saigwe/warehouse-finops" target="_blank" rel="noopener">Warehouse FinOps</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/warehouse-finops/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/warehouse-finops/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>The warehouse cost review finance and data leaders ask for: where the money goes by warehouse, team and query pattern, how much is waste, and which fixes pay back fastest. The input is 30 days of synthetic usage shaped like Snowflake's <code>ACCOUNT_USAGE</code> views, with four kinds of waste planted.</p>
+          <ul class="points">
+            <li>Four changes, under a week of engineering effort, cut spend by <strong>52% ($104k a year)</strong> with no loss of service.</li>
+            <li>The biggest wins: make a model rebuilt 24 times a day incremental ($47k), and shorten a 60-minute auto-suspend on a warehouse whose bill was 94% idle time ($44k, a five-minute change).</li>
+            <li>Attribution reconciles to the bill: work plus idle equals billed for every warehouse, and team showback sums to the total, both tested.</li>
+            <li>A one-page executive memo for the CFO or CDO, and the full analysis for the data team.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>SQL</li><li>DuckDB</li><li>Snowflake ACCOUNT_USAGE</li><li>Python</li><li>matplotlib</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/warehouse-finops" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/warehouse-finops/blob/main/output/executive_memo.md" target="_blank" rel="noopener">Executive memo →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Product analytics + experimentation</p>
+              <h3><a href="https://github.com/Saigwe/experimentation-platform" target="_blank" rel="noopener">Experimentation Platform</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/experimentation-platform/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/experimentation-platform/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A/B test analysis the way it runs in production: check the experiment is valid, measure with honest uncertainty, cut noise with CUPED, check guardrails, then make one call: <strong>ship, don't ship or keep running</strong>. Both experiments are simulated with known ground truth.</p>
+          <ul class="points">
+            <li>The new checkout lifts conversion <strong>+6.0% (95% CI +1.7% to +10.2%)</strong>, and the interval contains the planted +4% lift. Decision: ship.</li>
+            <li>A second test is <strong>blocked automatically</strong>: a sample-ratio check (p = 7e-5) catches the planted logging bug, and the readout refuses to report a result.</li>
+            <li>CUPED cuts revenue variance by 68% without biasing the estimate; a page-load guardrail can veto a revenue win.</li>
+            <li>Sample size is set before launch: 161k users per arm to detect a 3% lift.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>SciPy</li><li>pandas</li><li>CUPED</li><li>A/B testing</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/experimentation-platform" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/experimentation-platform/blob/main/output/readout.md" target="_blank" rel="noopener">Readout →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Forecasting + workforce planning</p>
+              <h3><a href="https://github.com/Saigwe/forecasting-scenario-planning" target="_blank" rel="noopener">Forecasting &amp; Scenario Planning</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/forecasting-scenario-planning/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/forecasting-scenario-planning/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Demand forecasting turned into a staffing decision: three support queues, three years of synthetic weekly history, four candidate models chosen per queue by back-testing, and a scenario planner that converts volume into headcount.</p>
+          <ul class="points">
+            <li>Selected models average <strong>3.3–4.6% error (WAPE)</strong> on 13-week-ahead back-tests, against 8–20% for a moving average. Prediction intervals come from real back-test errors.</li>
+            <li>Queues peak at different times, so the plan finds the most stretched queue at its own peak and checks who has spare capacity that week: <strong>cross-train 5 agents and hire 1</strong>, not a hiring wave.</li>
+            <li>Scenarios put a value on options: self-service that trims handle time 10% is worth 15 FTE if growth runs 15% above forecast.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>statsmodels</li><li>Holt-Winters</li><li>pandas</li><li>matplotlib</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/forecasting-scenario-planning" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/forecasting-scenario-planning/blob/main/output/planning_memo.md" target="_blank" rel="noopener">Planning memo →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
@@ -1095,10 +1275,10 @@
       <div class="wrap">
         <h2>Skills</h2>
         <div class="skill-grid">
-          <div><h3>Data engineering</h3><ul class="chips"><li>ELT / ETL pipelines</li><li>Orchestration (Airflow, ADF)</li><li>Fivetran ingestion</li><li>Data warehousing &amp; lakehouse</li><li>Incremental loads</li><li>Semi-structured data (JSON)</li><li>Query &amp; cost optimisation</li><li>Git &amp; CI/CD</li></ul></div>
+          <div><h3>Data engineering</h3><ul class="chips"><li>ELT / ETL pipelines</li><li>Orchestration (Airflow, ADF, Dagster)</li><li>Fivetran ingestion</li><li>Change data capture &amp; reverse ETL</li><li>Terraform · Docker · Kubernetes</li><li>Data warehousing &amp; lakehouse</li><li>Incremental loads</li><li>Semi-structured data (JSON)</li><li>Query &amp; cost optimisation</li><li>Git &amp; CI/CD</li></ul></div>
           <div><h3>Analytics engineering</h3><ul class="chips"><li>dbt Core (production)</li><li>Kimball modelling</li><li>SCD Type 1/2</li><li>Staging / intermediate / marts</li><li>Semantic layers</li><li>Macros &amp; reusable patterns</li><li>Metric &amp; KPI definitions</li></ul></div>
-          <div><h3>Data management &amp; governance</h3><ul class="chips"><li>Data quality frameworks</li><li>Automated testing &amp; validation</li><li>Reconciliation</li><li>Access controls for sensitive data</li><li>Lineage &amp; documentation</li><li>Metadata management</li><li>Authoritative sources &amp; system of record</li><li>Data ownership</li><li>Auditable reporting</li></ul></div>
-          <div><h3>Data analysis &amp; visualisation</h3><ul class="chips"><li>Advanced SQL</li><li>Statistical analysis (Python, R)</li><li>Forecasting (churn, demand)</li><li>Segmentation</li><li>Scenario &amp; business-case modelling</li><li>Power BI · Tableau · Looker · Metabase</li><li>Data storytelling</li></ul></div>
+          <div><h3>Data management &amp; governance</h3><ul class="chips"><li>Data quality frameworks</li><li>Data contracts</li><li>PII discovery &amp; GDPR erasure</li><li>Automated testing &amp; validation</li><li>Reconciliation</li><li>Access controls for sensitive data</li><li>Lineage &amp; documentation</li><li>Metadata management</li><li>Authoritative sources &amp; system of record</li><li>Data ownership</li><li>Auditable reporting</li></ul></div>
+          <div><h3>Data analysis &amp; visualisation</h3><ul class="chips"><li>Advanced SQL</li><li>Statistical analysis (Python, R)</li><li>Forecasting (churn, demand)</li><li>A/B testing (SRM, CUPED)</li><li>Segmentation</li><li>Scenario &amp; business-case modelling</li><li>Power BI · Tableau · Looker · Metabase</li><li>Data storytelling</li></ul></div>
           <div><h3>Platforms &amp; languages</h3><ul class="chips"><li>Snowflake</li><li>BigQuery</li><li>Databricks</li><li>PostgreSQL</li><li>MongoDB</li><li>Azure · AWS · GCP</li><li>SQL · Python · R</li></ul></div>
           <div><h3>Domains &amp; AI-ready data</h3><ul class="chips"><li>Banking &amp; risk data</li><li>Procurement &amp; spend</li><li>Revenue assurance</li><li>Churn &amp; retention</li><li>NL-to-SQL with evaluations</li><li>Anomaly detection</li></ul></div>
         </div>
