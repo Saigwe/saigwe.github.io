@@ -908,6 +908,58 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Marketing analytics + measurement</p>
+              <h3><a href="https://github.com/Saigwe/marketing-mix-attribution" target="_blank" rel="noopener">Marketing Mix Model &amp; Attribution on GA4 Data</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/marketing-mix-attribution/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/marketing-mix-attribution/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Two answers to <strong>"what is marketing worth?"</strong>, each tested against ground truth. Attribution on Google's <strong>real GA4 sample</strong> (4.3M events, 360,129 sessions, 5,372 orders) under seven models, from last click to a data-driven Markov chain. A <strong>marketing mix model</strong> on simulated spend with known true returns, to test whether the model and its budget plan can be trusted.</p>
+          <ul class="points">
+            <li>Every attribution model hands out exactly the $340,647 of revenue, by test. The model is a choice with consequences: Direct earns 38.8% of revenue under last click and 14.2% under last non-direct click.</li>
+            <li>Without experiments, the mix model gives online video nearly three times its true ROI. Calibrating with lift tests cuts the average ROI error from 0.61 to 0.16.</li>
+            <li>Scored on the true curves, <strong>neither model's budget plan beats today's allocation</strong>, though both predict gains: budget moves need marginal returns, which three years of observational data can't pin down. Use the MMM to choose the next experiment.</li>
+            <li>Honest about the data: Google obfuscates 42% of session sources in the sample, purchases are deduplicated by a stated rule, and one lift test came in unluckily low and is shown, not redrawn.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt Core</li><li>DuckDB</li><li>Python</li><li>SciPy</li><li>dbt-trust-tests</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/marketing-mix-attribution" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/marketing-mix-attribution#results" target="_blank" rel="noopener">Results →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Data engineering + fraud</p>
+              <h3><a href="https://github.com/Saigwe/payments-anomaly-stream" target="_blank" rel="noopener">Real-Time Payments Anomaly Stream</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/payments-anomaly-stream/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/payments-anomaly-stream/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p><strong>284,807 real card transactions</strong> replayed as a stream with the delays, out-of-order arrivals, redeliveries and very late events a real feed has, and scored for fraud in micro-batches. Rules and a gradient-boosted model are <strong>trained on day 1 and tested on day 2</strong>.</p>
+          <ul class="points">
+            <li>On day 2 the model catches <strong>181 of 211 frauds (85.8%)</strong> at 18.6% precision; three interpretable rules catch 176. Every transaction is processed exactly once, about 13 ms per batch of 500.</li>
+            <li>Fraud alerts are never dropped: late events are still scored and can alert, but stay out of monitoring windows already published. A test proves it with a late fraud.</li>
+            <li>The production lesson, shown not hidden: the threshold tuned on day 1 alerts on 0.70% of day 2, 3.5 times the 0.2% budget, because scores drifted (PSI 0.18). Next step: a rolling-quantile threshold.</li>
+            <li>The Kafka consumer and the offline replay feed the same processor; the thin Kafka wrappers haven't yet run against a live broker, as the README says.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>scikit-learn</li><li>Kafka (Redpanda)</li><li>DuckDB</li><li>pytest</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/payments-anomaly-stream" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/payments-anomaly-stream#results" target="_blank" rel="noopener">Results →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
