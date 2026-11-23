@@ -1143,6 +1143,58 @@
         <article class="feature">
           <div class="feature-head">
             <div>
+              <p class="tag">Featured · Data observability + customer feedback</p>
+              <h3><a href="https://github.com/Saigwe/data-product-observability" target="_blank" rel="noopener">Data-Product Observability</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/data-product-observability/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/data-product-observability/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Which reports people actually use, whether the data was fresh when they looked, and what customers say about the app and products. API-style activity events with late and duplicate deliveries, pipeline runs, two sell-through feeds and reviews, for a fictional electronics company. Simulated SLA and adoption metrics on synthetic data.</p>
+          <ul class="points">
+            <li>Ranks missed SLAs by usage: the most-used report (<strong>271 viewers a week</strong>) missed 9 of 90 freshness checks, with <strong>584 views on stale data</strong>, traced to a retailer's late SFTP file.</li>
+            <li>Separates an actionable regression (app 5.2.0, <strong>-0.99 stars on 281 reviews</strong>, interval clear of zero) from a weak signal (a 1.67-star week on <strong>three reviews</strong>, 3.58 once shrunk).</li>
+            <li>Counts are defined, not assumed: distinct viewers never summed, a service account's 69% of one report's views excluded by a versioned metric, and an API schema change that would have zeroed views.</li>
+            <li>dbt on DuckDB with 37 models and 31 tests: event dedupe, hashed accounts, small-group suppression, stable report keys, API vs SFTP reconciliation with an exception queue, and a runbook.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt</li><li>DuckDB</li><li>SQL</li><li>DAX</li><li>Python</li><li>pytest</li><li>ECharts</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/data-product-observability" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://saigwe.github.io/data-product-observability/" target="_blank" rel="noopener">Live dashboard →</a>
+            <a href="https://github.com/Saigwe/data-product-observability/blob/main/docs/runbook.md" target="_blank" rel="noopener">Runbook →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Forecast accuracy + S&amp;OP</p>
+              <h3><a href="https://github.com/Saigwe/forecast-sop-observability" target="_blank" rel="noopener">Forecast Observability &amp; S&amp;OP</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/forecast-sop-observability/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/forecast-sop-observability/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Compares a demand-sensing forecast with a Kinaxis-style consensus plan, scored only on the version that was knowable when the decision was made, then shows what forecast error means for labour capacity and inventory. A fictional consumer-electronics company with 16 SKUs, four markets and three sites. Synthetic data throughout.</p>
+          <ul class="points">
+            <li>Summed over every SKU the sensing model looks better (<strong>3.1% WAPE</strong> against 5.5%); at the SKU x market grain where stock is committed, the consensus plan is twice as accurate (<strong>8.5%</strong> against 17.8%).</li>
+            <li>Catches a backfilled snapshot that would claim <strong>0.8% WAPE</strong> if scored naively; the as-of join scores the version planners saw at <strong>10.7%</strong>. A missing feed and a late actuals week are flagged by the observability checks.</li>
+            <li>One site peaks at <strong>121% of available hours</strong> on the base plan (731 hours short); four stock positions depend on which forecast you believe.</li>
+            <li>dbt on DuckDB with 37 models and 25 tests: leak-proof snapshots, matched-pair scoring, ratios recomputed from sums, unit checks on capacity and a rebuild fingerprint in CI.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt</li><li>DuckDB</li><li>SQL</li><li>DAX</li><li>Python</li><li>pytest</li><li>ECharts</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/forecast-sop-observability" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://saigwe.github.io/forecast-sop-observability/" target="_blank" rel="noopener">Live dashboard →</a>
+            <a href="https://github.com/Saigwe/forecast-sop-observability/blob/main/docs/decision_memo.md" target="_blank" rel="noopener">Decision memo →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
               <p class="tag">Featured · Market intelligence + pricing and promotions</p>
               <h3><a href="https://github.com/Saigwe/market-launch-promo-intelligence" target="_blank" rel="noopener">Market, Launch &amp; Promotion Intelligence</a></h3>
             </div>
