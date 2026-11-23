@@ -1140,6 +1140,81 @@
           </div>
         </article>
 
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Mobile gaming + player analytics</p>
+              <h3><a href="https://github.com/Saigwe/mobile-game-player-analytics" target="_blank" rel="noopener">Mobile Game Player Analytics</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/mobile-game-player-analytics/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/mobile-game-player-analytics/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A player analytics warehouse for a free-to-play mobile game, on 20,000 synthetic players: tutorial funnel, day-N retention cohorts, level difficulty, in-app purchase and ad revenue, and acquisition channel quality, built in dbt and orchestrated by Dagster.</p>
+          <ul class="points">
+            <li>Recovers every pattern planted in the data: the tutorial step that loses <strong>22.3% of players</strong>, the level that fails <strong>2.2x more often</strong> than its neighbours, and the channel whose installs are worth a fifth of organic ones.</li>
+            <li>Raw telemetry is messy on purpose: duplicate events, late events, retried store webhooks and six currencies. Staging handles each, and an as-of FX join came out of a test that failed on the first build.</li>
+            <li>41 dbt tests plus 10 pytest tests, including revenue recomputed in pandas from raw that matches the mart to the cent. Dagster checks raise a warning on a leaking tutorial step or a difficulty wall.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt</li><li>DuckDB</li><li>Dagster</li><li>SQL</li><li>Python</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/mobile-game-player-analytics" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/mobile-game-player-analytics/blob/main/results/results.md" target="_blank" rel="noopener">Results →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · User acquisition + LTV forecasting</p>
+              <h3><a href="https://github.com/Saigwe/game-ltv-roas-forecasting" target="_blank" rel="noopener">Game LTV &amp; ROAS Forecasting</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/game-ltv-roas-forecasting/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/game-ltv-roas-forecasting/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Forecasts what a mobile game's acquisition cohorts will be worth at day 180 from their first 7, 14 or 30 days, backtests the forecast without leakage, and turns it into a scale, hold or cut decision per channel. Synthetic data, scored against a truth the forecaster never sees.</p>
+          <ul class="points">
+            <li>Catches the classic trap: the channel with the <strong>best day-7 ROAS (0.34) is the worst at day 180 (0.61)</strong>, while the slowest starter is the only one that pays back.</li>
+            <li>From day 30 the forecast is within <strong>2 to 11%</strong> on backtest, and every 90% range contains the real 180-day ROAS. A power-law curve fit, tested alongside it, is wrong by 60 to 180%.</li>
+            <li>Ranges come from the backtest's own errors, and the README says where it falls short: day 14 is too early to judge a slow-burn channel.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>DuckDB</li><li>SQL</li><li>pandas</li><li>NumPy</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/game-ltv-roas-forecasting" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/game-ltv-roas-forecasting/blob/main/results/results.md" target="_blank" rel="noopener">Results →</a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature-head">
+            <div>
+              <p class="tag">Featured · Live-ops experimentation + game economy</p>
+              <h3><a href="https://github.com/Saigwe/game-economy-liveops-test" target="_blank" rel="noopener">Game Economy &amp; Live-Ops Experiment</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/game-economy-liveops-test/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/game-economy-liveops-test/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A full readout of a synthetic live-ops A/B test that gives players more coins on the hardest levels: validity checks first, then retention, engagement with CUPED, a revenue guardrail and the health of the coin economy.</p>
+          <ul class="points">
+            <li>Retention is up <strong>2.6 points</strong> and the test still should not ship: in-app purchase revenue falls beyond the guardrail and median coin balances end <strong>41% higher</strong>, so the readout recommends a smaller boost or a matching coin sink.</li>
+            <li>CUPED removes <strong>78% of the variance</strong> in sessions; an A/A simulation confirms about a 5% false-positive rate.</li>
+            <li>A logging bug that drops 6% of treatment players would have overstated retention; the sample-ratio check catches it (p = 6e-8) and the readout refuses to report.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Python</li><li>SciPy</li><li>DuckDB</li><li>SQL</li><li>A/B testing</li><li>pytest</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/game-economy-liveops-test" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://github.com/Saigwe/game-economy-liveops-test/blob/main/results/readout.md" target="_blank" rel="noopener">Readout →</a>
+          </div>
+        </article>
+
         <div id="more-projects" class="grid" hidden></div>
       </div>
     </section>
