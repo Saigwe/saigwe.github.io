@@ -1154,14 +1154,16 @@
           <ul class="points">
             <li>Recovers every pattern planted in the data: the tutorial step that loses <strong>22.3% of players</strong>, the level that fails <strong>2.2x more often</strong> than its neighbours, and the channel whose installs are worth a fifth of organic ones.</li>
             <li>Raw telemetry is messy on purpose: duplicate events, late events, retried store webhooks and six currencies. Staging handles each, and an as-of FX join came out of a test that failed on the first build.</li>
-            <li>41 dbt tests plus 10 pytest tests, including revenue recomputed in pandas from raw that matches the mart to the cent. Dagster checks raise a warning on a leaking tutorial step or a difficulty wall.</li>
+            <li>41 dbt tests plus 17 pytest tests, including revenue recomputed in pandas from raw that matches the mart to the cent. Dagster checks raise a warning on a leaking tutorial step or a difficulty wall.</li>
+            <li>Published as <strong>six studio dashboards</strong> (overview, acquisition, engagement, monetisation, economy and live-ops, data trust) covering DAU, MAU, ARPDAU, ROAS, retention, eCPM, currency sinks, crash-free rate and attribution match rate, rebuilt by CI on every push.</li>
           </ul>
           <ul class="chips" aria-label="Technologies">
-            <li>dbt</li><li>DuckDB</li><li>Dagster</li><li>SQL</li><li>Python</li><li>pytest</li>
+            <li>dbt</li><li>DuckDB</li><li>Dagster</li><li>SQL</li><li>Python</li><li>pytest</li><li>ECharts</li>
           </ul>
           <div class="links">
             <a href="https://github.com/Saigwe/mobile-game-player-analytics" target="_blank" rel="noopener">Repository →</a>
             <a href="https://github.com/Saigwe/mobile-game-player-analytics/blob/main/results/results.md" target="_blank" rel="noopener">Results →</a>
+            <a href="https://saigwe.github.io/mobile-game-player-analytics/" target="_blank" rel="noopener">Live dashboard →</a>
           </div>
         </article>
 
@@ -1187,6 +1189,7 @@
           <div class="links">
             <a href="https://github.com/Saigwe/game-ltv-roas-forecasting" target="_blank" rel="noopener">Repository →</a>
             <a href="https://github.com/Saigwe/game-ltv-roas-forecasting/blob/main/results/results.md" target="_blank" rel="noopener">Results →</a>
+            <a href="https://saigwe.github.io/mobile-game-player-analytics/acquisition.html" target="_blank" rel="noopener">Live dashboard →</a>
           </div>
         </article>
 
@@ -1212,6 +1215,7 @@
           <div class="links">
             <a href="https://github.com/Saigwe/game-economy-liveops-test" target="_blank" rel="noopener">Repository →</a>
             <a href="https://github.com/Saigwe/game-economy-liveops-test/blob/main/results/readout.md" target="_blank" rel="noopener">Readout →</a>
+            <a href="https://saigwe.github.io/mobile-game-player-analytics/economy.html" target="_blank" rel="noopener">Live dashboard →</a>
           </div>
         </article>
 
