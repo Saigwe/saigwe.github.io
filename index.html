@@ -1143,6 +1143,32 @@
         <article class="feature">
           <div class="feature-head">
             <div>
+              <p class="tag">Featured · Event analytics + ClickHouse</p>
+              <h3><a href="https://github.com/Saigwe/game-telemetry-clickhouse" target="_blank" rel="noopener">Game Telemetry on ClickHouse: Did Build 3.5.0 Hurt Retention?</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/game-telemetry-clickhouse/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/game-telemetry-clickhouse/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>A mobile puzzle game ships a new build and day-1 retention on the dashboard drops. An incremental ClickHouse pipeline over 1.15 million synthetic events separates what players did from what the telemetry did: SDK retries, offline deliveries days late, a lost build ID, skewed clocks, a schema change and an unregistered event name. Synthetic data; demo results.</p>
+          <ul class="points">
+            <li>iOS is a logging change, not a player change: a new <code>app_resume</code> event replaced <code>session_start</code>, so D1 on session_start fell to <strong>28.7%</strong> while D1 on any engagement held at <strong>52.9%</strong>.</li>
+            <li>Android is a real regression: low-memory devices crash at level 7 in <strong>41.9%</strong> of starts on 3.5.0, crash-free sessions fall from 98.7% to 94.7% and D1 from 54.7% to 51.4%.</li>
+            <li>Day-by-day incremental loads with a three-day watermark, partition rebuilds proved idempotent in CI, and a full backfill that adds exactly the 19,026 deliveries that arrived too late.</li>
+            <li>Same question answered from raw deliveries and from modelled tables: roughly <strong>100x faster</strong> on the modelled side, same answer checked; 26 tests against a real ClickHouse server in CI.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>ClickHouse</li><li>SQL</li><li>Python</li><li>pytest</li><li>Docker</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/game-telemetry-clickhouse" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://saigwe.github.io/game-telemetry-clickhouse/" target="_blank" rel="noopener">Live dashboard →</a>
+            <a href="https://github.com/Saigwe/game-telemetry-clickhouse/blob/main/docs/design_decisions.md" target="_blank" rel="noopener">Design decisions →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
               <p class="tag">Featured · Workforce data + governance</p>
               <h3><a href="https://github.com/Saigwe/workforce-seniority-audit" target="_blank" rel="noopener">Workforce Seniority &amp; Data-Quality Audit</a></h3>
             </div>
