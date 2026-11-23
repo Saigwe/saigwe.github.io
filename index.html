@@ -1202,6 +1202,22 @@
             </div>
           </li>
           <li>
+            <div class="when">Jul – Nov 2024</div>
+            <div class="what">
+              <h3>Senior Analytics Engineer (contract)</h3>
+              <p class="org">Gameplay Galaxy · Mobile racing game (iOS and Android)</p>
+              <p>Built the player analytics layer for a live mobile game: ClickHouse models over client and server event telemetry, joined to attribution, ad and in-app purchase data, so product, LiveOps and marketing could see the whole player journey from install to spend. Every dashboard filters by date, platform, country, acquisition source and environment.</p>
+              <ul class="projects">
+                <li><strong>Onboarding (FTUE) funnel:</strong> player counts and drop-off at every step from app launch through each tutorial step, with tutorial crash analytics, to show exactly where new players were lost.</li>
+                <li><strong>Retention and engagement:</strong> D1 to D7 cohort retention from registration date, daily active users, and sessions rebuilt from raw events (a 5-minute inactivity rule) to measure real playtime per player.</li>
+                <li><strong>Progression and game balance:</strong> career level completion (confirmed vs completed vs restarted vs abandoned races per level), PvP arena-to-arena progression with p10 to p90 race times, tournament active days, and time to craft and upgrade bikes, giving designers evidence on difficulty and pacing.</li>
+                <li><strong>Monetisation:</strong> an in-app purchase model with every transaction normalised to USD and the store pack catalogue indexed by type and price, plus impression-level ad revenue (AppLovin MAX) in a materialised view joined to players.</li>
+                <li><strong>Attribution:</strong> user-level Singular attribution views that assign each player a first-touch source (organic, paid marketing or cross-promotion), used as a filter across every dashboard to compare channel quality.</li>
+                <li><strong>Platform:</strong> set up dbt on ClickHouse with staging, intermediate, dimension and fact layers and dbt-utils and dbt-expectations tests, orchestrated by Dagster (dagster-dbt), and worked on deploying it to Kubernetes with Docker and the Dagster Helm chart.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
             <div class="when">2022 – 2024</div>
             <div class="what">
               <h3>Senior Data Analytics &amp; BI Engineer</h3>
@@ -1279,8 +1295,8 @@
           <div><h3>Analytics engineering</h3><ul class="chips"><li>dbt Core (production)</li><li>Kimball modelling</li><li>SCD Type 1/2</li><li>Staging / intermediate / marts</li><li>Semantic layers</li><li>Macros &amp; reusable patterns</li><li>Metric &amp; KPI definitions</li></ul></div>
           <div><h3>Data management &amp; governance</h3><ul class="chips"><li>Data quality frameworks</li><li>Data contracts</li><li>PII discovery &amp; GDPR erasure</li><li>Automated testing &amp; validation</li><li>Reconciliation</li><li>Access controls for sensitive data</li><li>Lineage &amp; documentation</li><li>Metadata management</li><li>Authoritative sources &amp; system of record</li><li>Data ownership</li><li>Auditable reporting</li></ul></div>
           <div><h3>Data analysis &amp; visualisation</h3><ul class="chips"><li>Advanced SQL</li><li>Statistical analysis (Python, R)</li><li>Forecasting (churn, demand)</li><li>A/B testing (SRM, CUPED)</li><li>Segmentation</li><li>Scenario &amp; business-case modelling</li><li>Power BI · Tableau · Looker · Metabase</li><li>Data storytelling</li></ul></div>
-          <div><h3>Platforms &amp; languages</h3><ul class="chips"><li>Snowflake</li><li>BigQuery</li><li>Databricks</li><li>PostgreSQL</li><li>MongoDB</li><li>Azure · AWS · GCP</li><li>SQL · Python · R</li></ul></div>
-          <div><h3>Domains &amp; AI-ready data</h3><ul class="chips"><li>Banking &amp; risk data</li><li>Procurement &amp; spend</li><li>Revenue assurance</li><li>Churn &amp; retention</li><li>NL-to-SQL with evaluations</li><li>Anomaly detection</li></ul></div>
+          <div><h3>Platforms &amp; languages</h3><ul class="chips"><li>Snowflake</li><li>BigQuery</li><li>Databricks</li><li>ClickHouse</li><li>PostgreSQL</li><li>MongoDB</li><li>Azure · AWS · GCP</li><li>SQL · Python · R</li></ul></div>
+          <div><h3>Domains &amp; AI-ready data</h3><ul class="chips"><li>Banking &amp; risk data</li><li>Procurement &amp; spend</li><li>Revenue assurance</li><li>Churn &amp; retention</li><li>Mobile gaming &amp; player analytics</li><li>NL-to-SQL with evaluations</li><li>Anomaly detection</li></ul></div>
         </div>
 
         <div class="two-col">
