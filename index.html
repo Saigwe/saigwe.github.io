@@ -1143,6 +1143,32 @@
         <article class="feature">
           <div class="feature-head">
             <div>
+              <p class="tag">Featured · Workforce data + governance</p>
+              <h3><a href="https://github.com/Saigwe/workforce-seniority-audit" target="_blank" rel="noopener">Workforce Seniority &amp; Data-Quality Audit</a></h3>
+            </div>
+            <a class="badge" href="https://github.com/Saigwe/workforce-seniority-audit/actions/workflows/ci.yml" target="_blank" rel="noopener">
+              <img src="https://github.com/Saigwe/workforce-seniority-audit/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20">
+            </a>
+          </div>
+          <p>Turns inconsistent worker records from two payroll systems into an auditable as-of view: effective-dated placements, continuous-service seniority and a rejection table that says which records lack the evidence to calculate it. A fictional payroll services company with ten client employers. Synthetic data, no names or identifiers, counts only.</p>
+          <ul class="points">
+            <li>Answers one headcount question twice: counting open rows gives <strong>1,706</strong>, effective dates and explicit rejections give <strong>1,959</strong>, mostly because fixed-term contracts carry a real end date.</li>
+            <li>Every delivered row is valid or rejected for exactly one reason: <strong>104 rejected</strong>, including workers placed with two employers at once and dates like 31/02/2024; <strong>18 workers</strong> are reported as insufficient evidence, not guessed.</li>
+            <li>Tenure in completed months with a month-end rule (31 Jan to 28 Feb is one month; a leap-day start completes its year on 28 Feb), proved on 15 fixtures and an independent implementation.</li>
+            <li>dbt on DuckDB with 23 models and 31 tests: typed staging from text, source and surrogate keys, a slowly changing branch dimension, reconciliation under every filter, small-cell suppression and a rebuild fingerprint in CI.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>dbt</li><li>DuckDB</li><li>SQL</li><li>DAX</li><li>Python</li><li>pytest</li><li>ECharts</li><li>GitHub Actions</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/Saigwe/workforce-seniority-audit" target="_blank" rel="noopener">Repository →</a>
+            <a href="https://saigwe.github.io/workforce-seniority-audit/" target="_blank" rel="noopener">Live dashboard →</a>
+            <a href="https://github.com/Saigwe/workforce-seniority-audit/blob/main/analysis/audit_report.md" target="_blank" rel="noopener">Audit report →</a>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="feature-head">
+            <div>
               <p class="tag">Featured · Data observability + customer feedback</p>
               <h3><a href="https://github.com/Saigwe/data-product-observability" target="_blank" rel="noopener">Data-Product Observability</a></h3>
             </div>
